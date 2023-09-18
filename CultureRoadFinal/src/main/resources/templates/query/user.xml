@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.culture.user.login.dao.UserLoginDAO">
+
+	<select id="userLogin" parameterType="userLogin" resultType="userLogin">
+      SELECT   user_no userNo, user_id userId, user_pw userPw, user_name userName, user_email userEmail, 
+       user_phone userPhone, TO_CHAR(TO_DATE(user_birth, 'YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth, user_date userDate, user_delete userDelete
+      FROM   USERS
+      WHERE user_id = #{userId} and user_pw = #{userPw}
+	</select>
+
+	<insert id="signUp" parameterType="userLogin">
+    <!-- 회원가입 -->
+    INSERT INTO USERS(user_no, user_name, user_id, user_pw, user_email, user_phone, user_birth)
+    VALUES (users_seq.nextval, #{userName}, #{userId}, #{userPw}, #{userEmail}, #{userPhone}, #{userBirth})
+	</insert>
+	
+	<select id="idChk" parameterType="userLogin" resultType="int">
+		/* 아이디중복확인 */
+		SELECT count(*)
+		FROM USERS
+		WHERE user_id=#{userId}
+	</select>
+	
+	<select id="pwChk" parameterType="userLogin" resultType="int">
+		/* 비밀번호 확인 */
+		SELECT count(*)
+		FROM USERS
+		WHERE user_id=#{userId} and user_pw=#{userPw}
+	</select>
+	
+	<select id="myPage" parameterType="userLogin" resultType="userLogin">
+		SELECT   user_no userNo, user_id userId, user_pw userPw, user_name userName, user_email userEmail, 
+		user_phone userPhone, TO_CHAR(TO_DATE(user_birth, '
+		
+		YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth
+		FROM   USERS
+		WHERE user_id=#{userId} 
+	</select>
+	
+	<update id="updateMyPage" parameterType="userLogin">
+      /*정보 수정 */
+      UPDATE USERS  
+      <set>
+         user_id = #{userId}
+         <if test="userPw != ''"> , user_pw = #{userPw}</if>
+         <if test="userEmail != ''"> , user_email = #{userEmail}</if>
+         <if test="userPhone != ''"> , user_phone = #{userPhone}</if>
+        
+      </set>
+      WHERE user_id=#{userId}
+   </update>
+
+	<update id="deleteAccount" parameterType="userLogin">
+	/* 회원 탈퇴 */
+		UPDATE USERS
+		SET user_delete = 1
+		WHERE user_id=#{userId} and user_pw=#{userPw}
+	</update>
+	
+	<!-- 
+	<delete id="deleteAccount" parameterType="user" >
+		/* 회원 탈퇴 */
+		DELETE FROM USERS
+		WHERE user_id=#{userId} and user_pw=#{userPw}
+	</delete>
+	 -->
+	 
+	 <!-- 사용자가 입력한 정보가 기존의 정보와 같은지 확인(이메일로 아이디) -->
+ 	<select id="personalInfoEmail" parameterType = "userLogin" resultType="int">
+ 		SELECT count(*)
+ 		FROM USERS
+ 		WHERE user_name = #{userName} and user_birth = #{userBirth} and user_email = #{userEmail}
+ 	</select>
+	
+	<!-- 사용자에게 id, 이름, 가입일 알려주기 -->
+	<select id="findId" parameterType = "userLogin" resultType="userLogin">
+		SELECT user_name userName, user_id userId, to_char(user_date,'YYYY-MM-DD') userDate
+ 		FROM USERS
+ 		WHERE user_name = #{userName} and user_birth = #{userBirth} and user_email = #{userEmail}
+	</select>
+	
+	 <!-- 사용자가 입력한 정보가 기존의 정보와 같은지 확인 -->
+ 	<select id="personalPwInfoEmail" parameterType = "userLogin" resultType="userLogin">
+ 		SELECT count(*)
+ 		FROM USERS
+ 		WHERE user_id = #{userId} and user_birth = #{userBirth} and user_email = #{userEmail}
+ 	</select>
+	
+	<update id="updatePw" parameterType="userLogin">
+		UPDATE USERS
+		SET user_pw = #{userPw}
+		WHERE user_id = #{userId}
+	</update>
+	
+	<!-- 사용자가 입력한 정보가 기존의 정보와 같은지 확인 (전화번호로 아이디)-->
+	<select id="personalInfoPhone" parameterType="userLogin" resultType="int">
+		SELECT count(*)
+		FROM USERS
+		WHERE user_name = #{userName} and user_birth = #{userBirth} and user_phone = #{userPhone}
+	</select>
+	
+	<select id="findIdPhone" parameterType="userLogin" resultType="userLogin">
+		SELECT user_name userName, user_id userId, to_char(user_date,'YYYY-MM-DD') userDate
+ 		FROM USERS
+ 		WHERE user_name = #{userName} and user_birth = #{userBirth} and user_phone = #{userPhone}
+	</select>
+	
+	<select id="personalPwInfoPhone" parameterType="userLogin" resultType="int">
+		SELECT count(*)
+		FROM USERS
+		WHERE user_id = #{userId} and user_birth = #{userBirth} and user_phone = #{userPhone}
+	</select>
+	
+	<select id="myOrderList" parameterType="userLogin" resultType="userLogin">
+		SELECT u.user_no userNo, u.user_id userId, m.mv_code, m.mv_pay_status, m.mv_order_date, m.mv_headcnt,
+		m.mv_date, m.price  
+		FROM USERS U INNER JOIN MVPAYMENTS M
+		WHERE u.user_no = m.user_no
+	</select>
+
+</mapper>
