@@ -12,7 +12,7 @@
               <div class="col-12">
                   <nav class="main-nav">
                       <!-- ***** Logo Start ***** -->
-                      <a href="/user/main" class="logo">
+                      <a href="../../index.jsp" class="logo">
                           <img src="/resources/main/image/logo.png" alt="">
                       </a>
                       <!-- ***** Logo End ***** -->
