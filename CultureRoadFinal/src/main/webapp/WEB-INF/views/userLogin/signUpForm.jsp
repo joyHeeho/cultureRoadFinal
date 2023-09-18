@@ -236,8 +236,10 @@
                           <button type="button" id="phoneChk" name="phoneChk">인증요청</button>
                         </div>
                         <label for="exampleInputMobile" class="col-sm-3 col-form-label">인증코드 입력</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
                           <input type="text" class="form-control" id="phoneChkText" name="phoneChkText"/>
+                         </div>
+                         <div class="col-sm-3">
                           <button type="button" id="phoneConfirm" name="phoneConfirm">인증확인</button>
                         </div>
                       </div>
