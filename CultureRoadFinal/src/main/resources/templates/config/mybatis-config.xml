@@ -5,6 +5,7 @@
 	<typeAliases>
 		
 		<typeAlias type="com.culture.admin.login.vo.AdminLoginVO" alias="adminLogin"/>
+		<typeAlias type="com.culture.admin.notice.vo.NoticeVO" alias="adminNotice"/>
 		<!-- 관리자 
 		<typeAlias type="com.culture.admin.notice.vo.AdminNoticeVO" alias="adminNotice"/>
 		<typeAlias type="com.culture.admin.board.vo.AdminBoardVO" alias="adminBoard"/>
@@ -15,6 +16,7 @@
 		
 		-->	
 		<typeAlias type="com.culture.user.login.vo.UserLoginVO" alias="userLogin"/>
+		
 		<!-- 사용자
 		 <typeAlias type="com.culture.user.notice.vo.UserNoticeVO" alias="userNotice"/>
 		<typeAlias type="com.culture.user.board.vo.UserBoardVO" alias="userBoard"/>

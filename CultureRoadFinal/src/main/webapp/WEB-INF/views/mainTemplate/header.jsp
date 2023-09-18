@@ -12,7 +12,7 @@
               <div class="col-12">
                   <nav class="main-nav">
                       <!-- ***** Logo Start ***** -->
-                      <a href="/user/main" class="logo">
+                      <a href="/" class="logo">
                           <img src="/resources/main/image/logo.png" alt="">
                       </a>
                       <!-- ***** Logo End ***** -->
@@ -30,14 +30,14 @@
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="#bestComment">BestComment</a></li>
-                          <li><a href="">Notice</a>
+                          <li><a href="/notice/board">Notice</a>
                           <c:choose>
                           	<c:when test = "${empty userLogin}">
                           		<li><a href="/userLogin/signUpForm">회원가입</a></li>
                           		<li><a href="/userLogin/loginUser">로그인</a></li>
                           	</c:when>
                           	<c:when test = "${not empty userLogin}">
-                          		<li><a href="/userLogin/myPage">마이페이지</a></li>
+                          		<li><a href="/userLogin/myPage">내정보</a></li>
                           		<li><a href="/userLogin/logout">로그아웃</a></li>
                           	</c:when>
                           </c:choose>

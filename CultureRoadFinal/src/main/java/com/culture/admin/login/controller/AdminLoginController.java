@@ -74,4 +74,5 @@ public class AdminLoginController {
 	public String main() {
 		return "/admin/main/main";
 	}
+	
 }
