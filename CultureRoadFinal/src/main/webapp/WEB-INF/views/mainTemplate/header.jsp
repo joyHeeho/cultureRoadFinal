@@ -30,7 +30,14 @@
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="#bestComment">BestComment</a></li>
-                          <li><a href="">Notice</a>
+                           <li class="has-sub">
+                              <a href="javascript:void(0)">Notice</a>
+                              <ul class="sub-menu">
+                                  <li><a href="#">Notice</a></li>
+                                  <li><a href="/qna/qnaClient">Q&A</a></li>
+                              </ul>
+                          </li>
+
                           <c:choose>
                           	<c:when test = "${empty userLogin}">
                           		<li><a href="/userLogin/signUpForm">회원가입</a></li>
