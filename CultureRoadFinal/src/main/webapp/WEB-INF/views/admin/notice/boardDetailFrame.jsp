@@ -15,7 +15,7 @@
   <body>
 
 		
-
+<c:if test="${not empty adminLogin }">
      <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -62,13 +62,19 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="#">
                 <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
                 <span class="menu-title">Q&A게시판 관리</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/charts/chartjs.html">
+              <a class="nav-link" href="/admin/movie/mvBoard/">
+                <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
+                <span class="menu-title">영화게시판 관리</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/reply/all">
                 <span class="icon-bg"><i class="mdi mdi-chart-bar menu-icon"></i></span>
                 <span class="menu-title">댓글 관리</span>
               </a>
@@ -120,12 +126,16 @@
           </ul>
         </nav>
         <!-- partial -->
-         <div class="main-panel"> 
+		<div class="main-panel"> 
               <%@ include file="/WEB-INF/views/admin/notice/boardDetail.jsp"%>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
+<%--          	 <%@ include file="/WEB-INF/views/admin/main/footer.jsp"%>  --%>
           <!-- partial -->
         </div>
+		</div>
+	</c:if>
+        
         <!-- main-panel ends -->
       <!-- page-body-wrapper ends -->
     <!-- container-scroller -->
@@ -145,9 +155,8 @@
     <!-- Custom js for this page -->
     <script src="/resources/adminMain/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+	<c:if test="${empty adminLogin}">
+			<%@ include file="/WEB-INF/views/admin/login/adminLogin.jsp"%>
+	</c:if>
 	</body>
 </html>
-		
-		
-		
-

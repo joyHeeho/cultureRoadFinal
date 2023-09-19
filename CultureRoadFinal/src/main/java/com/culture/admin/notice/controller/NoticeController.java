@@ -45,7 +45,42 @@ public class NoticeController {
 	
 	@PostMapping("/noticeDetail")
 	public String noticeDetail(NoticeVO nvo, Model model) {
-		noticeService.readCntUpdate(nvo);
+		/*noticeService.readCntUpdate(nvo);*/
+		NoticeVO detail = noticeService.noticeDetail(nvo);
+		log.info("공지 게시판 자세히 호출 : " + detail);
+		model.addAttribute("detail", detail);
+		
+		return "admin/notice/boardDetailFrame";
+	}
+	
+	@PostMapping("/noticeDelete")
+	public String noticeDelete(NoticeVO nvo) {
+		noticeService.noticeDelete(nvo);
+		return "redirect:/admin/notice/board";
+	}
+	
+	@GetMapping("/noticeInserForm")
+	public String noticeInsertForm() {
+		return "admin/notice/noticeInsertFrame";
+	}
+	
+	@PostMapping("/noticeInsert")
+	public String noticeInsert(NoticeVO nvo) {
+		noticeService.noticeInsert(nvo);
+		return "redirect:/admin/notice/board";
+	}
+	
+	@PostMapping("/noticeUpdateForm")
+	public String noticeUpdateForm(NoticeVO nvo, Model model) {
+		NoticeVO vo = noticeService.noticeDetail(nvo);
+		vo.setNoc_content(vo.getNoc_content().toString().replaceAll("<br />", "\n"));
+		model.addAttribute("detail", vo);
+		return "admin/notice/noticeUpdateFrame";
+	}
+	
+	@PostMapping("/noticeUpdate")
+	public String noticeUpdate(NoticeVO nvo, Model model) {
+		noticeService.noticeUpdate(nvo);
 		NoticeVO detail = noticeService.noticeDetail(nvo);
 		log.info("공지 게시판 자세히 호출 : " + detail);
 		model.addAttribute("detail", detail);

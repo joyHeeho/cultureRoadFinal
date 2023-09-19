@@ -16,6 +16,8 @@
 		
 		-->	
 		<typeAlias type="com.culture.user.login.vo.UserLoginVO" alias="userLogin"/>
+		<typeAlias type="com.culture.user.board.vo.MovieBoardVO" alias="movieBoard"/>
+		<typeAlias type="com.culture.user.board.vo.MovieReplyVO" alias="movieReply"/>
 		
 		<!-- 사용자
 		 <typeAlias type="com.culture.user.notice.vo.UserNoticeVO" alias="userNotice"/>

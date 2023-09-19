@@ -8,4 +8,17 @@
 			FROM MANAGER
 			WHERE manager_id = #{managerId} and manager_pw = #{managerPw}
 	</select>
+	
+	<select id="userCount" resultType="integer">
+		select count(*) from users
+	</select>
+	<select id="replyCount" resultType="integer">
+		select count(*) from MOVIEREPLY
+	</select>
+	<select id="commentCount" resultType="integer">
+		select count(*) from MOVIECOMMENT
+	</select>
+	<select id="mvboardCount" resultType="integer">
+		select count(*) from MOVIEBOARD
+	</select>
 </mapper>

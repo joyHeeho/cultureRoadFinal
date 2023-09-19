@@ -2,7 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<script type="text/javascript">
-
+	$(function(){
+		$("#updateBtn").click(function(){
+			$("#updateFrom").attr({
+				"method":"post",
+				"action":"/admin/notice/noticeUpdateForm"
+			});
+			$("#updateFrom").submit();
+		})
+	})
 	</script>
 	<style type="text/css">
      	.contentContainer{padding-top: 20px;}
@@ -72,8 +80,11 @@
 				</tbody>
 			</table>
 			<div class="text-end">
+				<a class="btn" id="updateBtn" >수정</a>
 				<a class="btn" href="/admin/notice/board">목록으로</a>
 			</div>
-
+			<form id="updateFrom">
+				<input type="hidden" id="noc_num" name="noc_num" value="${detail.noc_num }" />
+			</form>
 		</div>
 	</div>

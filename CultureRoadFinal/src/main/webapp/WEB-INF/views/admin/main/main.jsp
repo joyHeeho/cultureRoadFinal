@@ -74,9 +74,14 @@
                 <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
                 <span class="menu-title">Q&A게시판 관리</span>
               </a>
+              <li class="nav-item">
+              <a class="nav-link" href="/admin/movie/mvBoard/">
+                <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
+                <span class="menu-title">영화게시판 관리</span>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/charts/chartjs.html">
+              <a class="nav-link" href="/admin/reply/all">
                 <span class="icon-bg"><i class="mdi mdi-chart-bar menu-icon"></i></span>
                 <span class="menu-title">댓글 관리</span>
               </a>
@@ -118,7 +123,7 @@
 <!--               </a> -->
 <!--             </li> -->
 
-            
+           
             <li class="nav-item sidebar-user-actions">
               <div class="sidebar-user-menu">
                 <a href="/admin/logout" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
@@ -127,14 +132,16 @@
             </li>
           </ul>
         </nav>
+        
         <!-- partial -->
         <div class="main-panel"> 
               <jsp:include page="adminDashboard.jsp"/>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-         	 <jsp:include page="footer.jsp"/>
+<%--          	 <jsp:include page="footer.jsp"/> --%>
           <!-- partial -->
         </div>
+      </div>
         </c:if>
         <!-- main-panel ends -->
       <!-- page-body-wrapper ends -->

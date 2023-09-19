@@ -42,4 +42,19 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDAO.readCntUpdate(nvo);
 	}
 
+	@Override
+	public void noticeDelete(NoticeVO nvo) {
+		noticeDAO.noticeDelete(nvo);
+	}
+
+	@Override
+	public void noticeInsert(NoticeVO nvo) {
+		noticeDAO.noticeInsert(nvo);
+	}
+
+	@Override
+	public void noticeUpdate(NoticeVO nvo) {
+		noticeDAO.noticeUpdate(nvo);
+	}
+
 }

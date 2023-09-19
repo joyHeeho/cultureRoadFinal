@@ -31,6 +31,18 @@ $(function(){
 		$("#detail").submit();
 	})
 	
+	$(".deleteBtn").click(function(){
+		let noc_num = $(this).attr("data-num");
+		if(confirm("삭제 하시겠습니까?")){
+		$("#noc_num").val(noc_num);
+		$("#detail").attr({
+			method : "post",
+			action : "/admin/notice/noticeDelete"
+		})
+		$("#detail").submit();
+		}
+	})
+	
 	$("#searchData").click(function() {
 		if(!chkData("#keyword", "검색어를")) return;
 		else {
@@ -53,8 +65,11 @@ $(function(){
 		$("#f_search").find("input[name='pageNum']").val($(this).attr("href"));
 		goPage();
 	})
+	
+	$("#insertForm").click(function(){
+		location.href="/admin/notice/noticeInserForm"
+	})
 })
-
 function goPage(){
 	$("#f_search").attr({
 		"method":"get",
@@ -123,20 +138,25 @@ cursor : pointer;
 }
     </style>
 <!--         <div class="contentTit page-header"> -->
+	
     <div class="container">
 		<div id="boardSearch" class="d-flex justify-content-end"> 
 		<form id="f_search" name="f_search" class="form-inline">
 			<%-- 페이징 처리를 위한 파라미터 --%>
 			<input type="hidden" name="pageNum" id="pageNum" value="${paging.cvo.pageNum }">
 			<input type="hidden" name="amount" id="amount" value="${paging.cvo.amount }">
+			<div class="column">
+			<div class="d-inline-flex text-start">
+				<input type="button" class="btn btn-success text-start" id="insertForm" name="inserForm" value="공지작성">
+			</div>
 			<div class="d-inline-flex text-end">
-				 <label></label>
 				 <select id="search" name="search"  class="form-control form-control-sm w-auto">
 							<option value="noc_title">제목</option>
 							<option value="noc_content">내용</option>
 				</select>
 				<input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요" class="form-control form-control-sm w-auto" />
 				<button type="button" id="searchData" class="btn btn-primary ">검색</button>
+			</div>
 			</div>
 		</form>
 		</div>
@@ -170,7 +190,7 @@ cursor : pointer;
 									<td class="text-start"> ${notice.noc_write_date}</td>
 									<td class="text-center">${notice.readcnt}</td>
 									<td class="text-center">
-										<input type="button" class="deleteBtn btn" value="삭제">
+										<input data-num="${notice.noc_num }" type="button" class="deleteBtn btn" value="삭제">
 									</td>
 									
 								</tr>
@@ -214,7 +234,7 @@ cursor : pointer;
 		</div>
 
 	</div>
-    
+
     
     
     

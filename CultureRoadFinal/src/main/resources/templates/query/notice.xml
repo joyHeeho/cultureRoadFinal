@@ -43,7 +43,15 @@
 	<select id="readCntUpdate" parameterType="adminNotice">
 		update notice set readcnt = readcnt +1 where noc_num = #{noc_num}
 	</select>
-		
+	
+	<delete id="noticeDelete" parameterType="adminNotice">
+		delete from notice where noc_num= #{noc_num}
+	</delete>
+	
+	<insert id="noticeInsert" parameterType="adminNotice">
+		insert into NOTICE(noc_num, noc_title, noc_content, magnager_no)
+        values(NOTICE_seq.nextval,#{noc_title}, #{noc_content}, #{manager_no})
+	</insert>
 	
 	
 	

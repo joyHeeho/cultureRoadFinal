@@ -71,7 +71,15 @@ public class AdminLoginController {
 	   }
 
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model) {
+		int userCnt = adminLoginService.userCount();
+		int replyCnt = adminLoginService.replyCount();
+		int commentCnt = adminLoginService.commentCount();
+		int mvBoardCount = adminLoginService.mvboardCount();
+		model.addAttribute("userCnt", userCnt);
+		model.addAttribute("replyCnt", replyCnt);
+		model.addAttribute("commentCnt", commentCnt);
+		model.addAttribute("mvBoardCount", mvBoardCount);
 		return "/admin/main/main";
 	}
 	
