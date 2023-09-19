@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/views/common/common.jspf" %>
+<%@ include file="/WEB-INF/views/common/userLogin.jspf" %>
 
 	<script type="text/javascript">
 		function isUserEmailValid(userEmail) {
@@ -57,7 +57,7 @@
 						},
 						success : function(result) {
 							if(result === "같다") {
-								alert("회원정보가 일치합니다. 이메일 인증을 진행합니다.");
+								alert("회원정보가 일치합니다. 인증요청 버튼을 눌러주세요.");
 								$("#emailConfirmForm").show();
 							} else {
 								alert("회원정보가 일치하지 않습니다.");
@@ -80,34 +80,57 @@
 		}) //$(function(){})함수 끝
 		
 	</script>
+	<style>
+		.logo{
+				margin : 0% 20%;
+				width: 20%;
+			}
+		button {
+			display: flex;
+		  align-items: center;
+		}
+		
+	</style>
 	</head>
 	<body>
-		<div class="container">
+	<div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+          <div class="row flex-grow">
+            <div class="col-lg-4 mx-auto">
+              <div class="auth-form-light text-left p-5">
 			<div class="logo">
 				<img src="/resources/main/image/cultureLogo.jpg">
 			</div>
-			<form id="findIdEmailForm">
-				<div>
-					<label>이름</label>	
-					<input type="text" id="userName" name="userName" placeholder="이름을 입력하세요"/>
-				</div>
-				<div>
-					<label>생년월일</label>
-					<input type="text" id="userBirth" name="userBirth" />
-				</div>
-				<div>
-					<label>이메일</label>
-					<input type="text" id="userEmail" name="userEmail"  placeholder="가입시 등록한 이메일을 입력하세요" />
-				</div>
-				<button type="button" id="findIdEmBtn" name="findIdEmBtn">확인</button>
-				<button type="button" id="cancelBtn" name="cancelBtn">취소</button>
-			</form>
-			<form id="emailConfirmForm">
-				<button type="button" id="sendEmail" name="sendEmail">인증 요청</button>
-				<label>인증코드 입력</label>
-				<input type="text" id="emailChkText" name = "emailChkText" />
-				<button type="button" id="emailConfirm" name ="emailConfirm">인증 확인</button>
-			</form>
-		</div>
+                <form class="pt-3" id="findIdEmailForm">
+                  <div class="form-group">
+                  	<label>이름</label>
+                    <input type="text" class="form-control form-control-lg" id="userName" name="userName" >
+                  </div>
+                  <div class="form-group">
+                  	<label>생년월일</label>
+                    <input type="text" class="form-control form-control-lg" id="userBirth" name="userBirth">
+                  </div>
+                  <div class="form-group">
+                  	<label>이메일</label>
+                    <input type="text" class="form-control form-control-lg" id="userEmail" name="userEmail" placeholder="가입시 등록한 이메일을 입력하세요">
+                  </div>
+                  <button type="button" id="findIdEmBtn" name="findIdEmBtn" class="btn btn-primary">확인</button>
+				  <button type="button" id="cancelBtn" name="cancelBtn" class="btn btn-light">취소</button>
+				  </form>
+				  <form id="emailConfirmForm">
+				  	<br />
+					<button type="button" id="sendEmail" name="sendEmail" class="btn btn-primary">인증 요청</button>
+					<label>인증코드 입력</label>
+					<br />
+					<input type="text" id="emailChkText" name = "emailChkText" />
+					<button type="button" id="emailConfirm" name ="emailConfirm" class="btn btn-primary">인증 확인</button>
+				  </form>       
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
 	</body>
 </html>

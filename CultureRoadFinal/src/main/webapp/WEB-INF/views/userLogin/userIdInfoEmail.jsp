@@ -15,6 +15,21 @@
 	})
 	
 	</script>
+	<style>
+		.logo{
+				margin : 50px auto;
+				width: 20%;
+			}
+		
+		form {
+		    position: absolute;
+		    top: 250px;
+		    left: 50%; 
+		    transform: translate(-50%, -50%); 
+		}
+		
+		
+	</style>
 	</head>
 	<body>
 		<div class="container">
@@ -29,10 +44,10 @@
 			
 			<c:if test = "${not empty userIdInfo}">
 				<form> 
-					${userIdInfo.userName}님의 아이디는 ${userIdInfo.userId}입니다.
-					가입일은 ${userIdInfo.userDate}입니다.
-					<button type="button" id="loginUser">로그인</button>
-					<button type="button" id="pwReset">비밀번호 재설정</button>
+					<strong>${userIdInfo.userName}</strong>님의 아이디는 <strong>${userIdInfo.userId}</strong>입니다. <br />
+					가입일은 ${userIdInfo.userDate}입니다.<br />
+					<button type="button" id="loginUser" class="btn btn-outline-primary btn-fw">로그인</button>
+					<button type="button" id="pwReset" class="btn btn-outline-secondary btn-fw">비밀번호 재설정</button>
 				</form>
 			</c:if>
 		</div>

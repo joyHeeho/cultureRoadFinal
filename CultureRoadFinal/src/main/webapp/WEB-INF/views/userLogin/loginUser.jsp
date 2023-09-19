@@ -74,9 +74,10 @@
 	text-align: center;
 }
 </style>
-
+	
 </head>
 <body>
+<%-- <jsp:include page="../common/nav.jsp"/> --%>
 	<div>
 		<c:if test="${empty userLogin}">
 			<div class="container-scroller">

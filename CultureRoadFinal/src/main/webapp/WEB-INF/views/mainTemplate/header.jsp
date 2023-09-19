@@ -27,6 +27,7 @@
                                   <li><a href="about-us.jsp">Movie List</a></li>
                                   <li><a href="our-services.jsp">Movie Board</a></li>
                                   <li><a href="contact-us.jsp">Reservation</a></li>
+                                  <li><a href="contact-us.jsp">Movie Theater</a></li>
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="#bestComment">BestComment</a></li>

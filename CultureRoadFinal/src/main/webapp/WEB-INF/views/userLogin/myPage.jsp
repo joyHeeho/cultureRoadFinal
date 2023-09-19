@@ -18,53 +18,78 @@
 			})
 		})
 	</script>
+	
+	<style>
+		 .row{
+			display: flex;
+			justify-content: center; /* 수평 가운데 정렬 */
+		} 
+		.logo{
+			margin : 50px auto;
+			width: 20%;
+		}
+		
+		table {
+			text-align : center;
+		}
+		
+		button {
+			margin : 10px;
+		}
+
+	</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="logo">
-				<img src="/resources/main/image/cultureLogo.jpg" style="width: 50%;">
+				<img src="/resources/main/image/cultureLogo.jpg" >
 			</div>
-			<c:if test="${empty userLogin}">
-				<form class="form-signin" id="loginForm">
-				<h1>로그인을 해주세용</h1>
-				</form>
-			</c:if> 
-			
-			<c:if test = "${not empty userLogin}">
-				<form id="myPage"> 
-					<div>
-						<label>이름</label>
-						<label>${userLogin.userName}</label>				
-					</div>
-					<div>
-						<label>아이디</label>
-						<label>${userLogin.userId}</label>
-					</div>
-					<div>
-						<label>이메일</label>
-						<label>${userLogin.userEmail}</label>
-					</div>
-					<div>
-						<label>전화번호</label>
-						<label>${userLogin.userPhone}</label>
-					</div>
-					<div>
-						<label>생년월일</label>
-						<label>${userLogin.userBirth }</label>
-					</div>
-					<div>
-						<label>가입일</label>
-						<label>${userLogin.userDate }</label>
-					</div>
-					<button type="button" id="updateMyPageBtn" name="updateMyPageBtn">정보 수정</button>
-					<button type="button" id="mainPageBtn" name="mainPageBtn">메인페이지로</button>
-					<button type="button" id="deleteAccountBtn" name="deleteAccountBtn">회원탈퇴</button>
-					<button type="button" id="myOrderListBtn" name="myOrderListBtn">나의 예매내역</button>
-				</form>
-			</c:if>	
+			<div>
+			<c:if test = "${not empty userLogin}"> 
+			<div class="row" id="myPage" >
+              <div class="col-lg-6 grid-margin stretch-card" >
+                <div class="card">
+                  <div class="card-body">
+                    <h1 class="card-title">My Page</h1>
+                    <br />
+                    <table class="table">
+                        <tr>
+                          <td>이름</td>
+                          <td>${userLogin.userName}</td>
+                        </tr>
+                        <tr>
+                          <td>아이디</td>
+                          <td>${userLogin.userId}</td>
+                        </tr>
+                        <tr>
+                          <td>이메일</td>
+                          <td>${userLogin.userEmail}</td>
+                        </tr>
+                        <tr>
+                          <td>전화번호</td>
+                          <td>${userLogin.userPhone}</td>
+                        </tr>
+                        <tr>
+                          <td>생년월일</td>
+                          <td>${userLogin.userBirth }</td>
+                        </tr>
+                         <tr>
+                          <td>가입일</td>
+                          <td>${userLogin.userDate}</td>
+                        </tr>
+                    </table>
+						
+	                    <button type="button" id="updateMyPageBtn" name="updateMyPageBtn" class="btn btn-success">정보 수정</button>
+						<button type="button" id="myOrderListBtn" name="myOrderListBtn" class="btn btn-success">나의 예매내역</button>
+						<button type="button" id="mainPageBtn" name="mainPageBtn" class="btn btn-success">메인페이지로</button>		
+						<button type="button" id="deleteAccountBtn" name="deleteAccountBtn" class="btn btn-dark">회원탈퇴</button>
+                  </div>
+                </div>
+              </div>
+             </div>
+					
+			</c:if>
+			</div>	
 		</div>		
-		
-		
-		
 	</body>
 </html>
