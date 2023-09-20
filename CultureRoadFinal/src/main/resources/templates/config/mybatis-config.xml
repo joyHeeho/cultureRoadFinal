@@ -21,8 +21,10 @@
 		<typeAlias type="com.culture.user.reply.vo.UserReplyVO" alias="userReply"/>
 		<typeAlias type="com.culture.user.payment.vo.UserPaymentVO" alias="userPayment"/>
 		<typeAlias type="com.culture.user.comment.vo.UserCommentVO" alias="userComment"/>
-		<typeAlias type="com.culture.user.qna.vo.UserQnAVO" alias="userQnA"/>
-		
+	-->	
+		<typeAlias type="com.culture.qna.vo.QnaVO" alias="qna"/>
+	
+	<!--
 		API가 쿼리문이,,, 있나,,? 혹시 모르니까,, 남겨놓습니다.... 
 		<typeAlias type="com.culture.api.movie.vo.MovieVO" alias="movie"/>
 		<typeAlias type="com.culture.api.phone.vo.PhoneVO" alias="phone"/>
@@ -30,6 +32,7 @@
 		<typeAlias type="com.culture.api.payment.vo.PaymentVO" alias="payment"/>
 		
 	-->	
+	
 	</typeAliases>
 
 </configuration>

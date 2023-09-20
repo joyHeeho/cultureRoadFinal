@@ -17,17 +17,24 @@
 	    <!-- Bootstrap core CSS -->
 	    <link href="/resources/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
-	
+		
+<!-- 		내가넣음 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- 		내가넣음 -->
+		
 	    <!-- Additional CSS Files -->
 	    <link rel="stylesheet" href="/resources/main/assets/css/fontawesome.css">
 	    <link rel="stylesheet" href="/resources/main/assets/css/templatemo-574-mexant.css">
 	    <link rel="stylesheet" href="/resources/main/assets/css/owl.css">
 	    <link rel="stylesheet" href="/resources/main/assets/css/animate.css">
 	    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
-		<link rel="stylesheet" type="text/css" href="/resources/main/vendor/bootstrap.min.css" />
+	    
+		<link rel="stylesheet" type="text/css" href="/resources/main/vendor/bootstrap/css/bootstrap.min.css" />
+		
 		<script type="text/javascript" src="/resources/main/js/jquery-3.7.0.min.js"></script>
 		<script type="text/javascript" src="/resources/main/js/common.js"></script>
-		<script type="text/javascript" src="/resources/main/vendor/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/resources/main/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 		<!--[if lt IE 9]>
 			<script src="../js/html5shiv.js"></script>
@@ -35,20 +42,14 @@
 		
 		 <!-- Bootstrap core JavaScript -->
     <script src="/resources/main/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="/resources/main/assets/js/isotope.min.js"></script>
     <script src="/resources/main/assets/js/owl-carousel.js"></script>
 
-    <script src="/resources/main/assets/js/tabs.js"></script>
-    <script src="/resources/main/assets/js/swiper.js"></script>
-    <script src="/resources/main/assets/js/custom.js"></script>
-    
-
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
     <script src="/resources/main/vendor/jquery/jquery.min.js"></script>
-    <script src="/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="/resources/main/assets/js/isotope.min.js"></script>
     <script src="/resources/main/assets/js/owl-carousel.js"></script>
@@ -101,7 +102,7 @@
       var swiper = new Swiper(".swiper-container", swiperOptions);
     </script>
     
-    <script src="/resources/main/assets/js/modernizr-custom.js"></script>
-    <script src="/resources/main/assets/js/ie-checker.js"></script>
-    <script src="/resources/main/assets/js/swiper.min.js"></script>
+    <script src="/resources/main/js/modernizr-custom.js"></script>
+    <script src="/resources/main/js/ie-checker.js"></script>
+    <script src="/resources/main/js/swiper.min.js"></script>
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>

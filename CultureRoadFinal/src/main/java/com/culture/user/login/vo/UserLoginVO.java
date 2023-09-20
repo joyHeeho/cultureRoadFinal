@@ -14,4 +14,5 @@ public class UserLoginVO {
 	private String userBirth;
 	private String userDate;
 	private int userDelete;
+	
 }
