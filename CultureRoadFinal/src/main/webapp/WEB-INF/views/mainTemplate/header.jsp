@@ -26,7 +26,13 @@
                               <ul class="sub-menu">
                                   <li><a href="about-us.jsp">Movie List</a></li>
                                   <li><a href="our-services.jsp">Movie Board</a></li>
-                                  <li><a href="contact-us.jsp">Reservation</a></li>
+                                  <li><a href="/payment/page">Reservation</a></li>
+                                  <li><a href="/map/mapView">Movie Map</a></li>
+                                  
+							    <li><a href="/mvorderdetail/orderDetails">결제내역</a></li>
+							    <li><a href="/mvorderdetail/cancel">결제취소</a></li>
+							    <li><a href="/map/mapView">영화관 위치 찾기</a></li>
+							    <li><a href="admin/login/adminLogin">관리자 로그인</a></li>
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="#bestComment">BestComment</a></li>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 결제내역 -->
+<mapper namespace="com.culture.api.payment.DAO.MvorderdetailDAO">
+    <insert id="insertOrderDetail" parameterType="mvorderdetail">
+        INSERT INTO MVORDERDETAIL(mv_order_id, mv_payment_id, user_no, mv_headcnt, mv_price, mv_date)
+        VALUES (MVORDERDETAIL_SEQ.NEXTVAL,  #{mvPaymentId}, #{userNo}, #{mvHeadcnt}, #{mvPrice}, SYSDATE)
+    </insert>
+
+    <select id="getSelectedOrderDetails" resultType="mvorderdetail">
+        SELECT D.MV_ORDER_ID AS mvOrderId, D.MV_PAYMENT_ID AS mvPaymentId, D.USER_NO AS userNo,
+               D.MV_HEADCNT AS mvHeadcnt, D.MV_PRICE AS mvPrice, D.MV_DATE AS mvDate, P.MV_PAY_STATUS AS mvPayStatus
+        FROM MVORDERDETAIL D
+        LEFT JOIN MVPAYMENTS P
+        ON D.MV_PAYMENT_ID = P.MV_PAYMENT_ID
+        WHERE D.USER_NO = #{userNo}
+        ORDER BY D.MV_ORDER_DATE
+    </select>
+
+    <select id="getAllOrderDetails" resultType="mvorderdetail">
+        SELECT D.MV_ORDER_ID AS mvOrderId, D.MV_PAYMENT_ID AS mvPaymentId, D.USER_NO AS userNo,
+               D.MV_HEADCNT AS mvHeadcnt, D.MV_PRICE AS mvPrice, D.MV_DATE AS mvDate, P.MV_PAY_STATUS AS mvPayStatus
+        FROM MVORDERDETAIL D
+        LEFT JOIN MVPAYMENTS P
+        ON D.MV_PAYMENT_ID = P.MV_PAYMENT_ID
+        ORDER BY D.MV_ORDER_DATE
+    </select>
+</mapper>

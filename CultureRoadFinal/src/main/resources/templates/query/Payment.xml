@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.culture.api.payment.DAO.PaymentRepository">
+ <select id="paymentNumber" resultType="int">
+	SELECT MVPAYMENTS_SEQ.nextval FROM dual
+    </select>
+    
+    <insert id="insertPayment" parameterType="payment">
+        INSERT INTO MVPAYMENTS (mv_payment_id, mv_code, mv_headcnt, mv_price, mv_pay_status, user_no)
+        VALUES (#{mvPaymentId}, #{mvCode}, #{mvHeadcnt}, #{mvPrice}, #{mvPayStatus}, #{userNo})
+    </insert>
+
+    <update id="cancelPayment">
+            UPDATE MVPAYMENTS
+            SET mv_pay_status = 2
+            WHERE mv_payment_id = #{mvPaymentId}
+    </update>
+    
+    <select id="paymentList" resultType="payment" parameterType="payment">
+    	
+    </select>
+    
+    <select id="seq" parameterType="payment" resultType="payment">
+	SELECT mv_payment_id
+    FROM MVPAYMENTS
+    WHERE user_no = #{userNo} AND ROWNUM = 1
+    </select>
+</mapper>

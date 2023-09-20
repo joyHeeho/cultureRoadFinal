@@ -58,6 +58,12 @@
 			<version>2.3.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20230618</version>
+		</dependency>		
+		
 				<!-- JSTL 라이브러리 -->
 <!-- http://mvnrepository.com/artifact/javax.servlet/jstl -->
         <dependency>

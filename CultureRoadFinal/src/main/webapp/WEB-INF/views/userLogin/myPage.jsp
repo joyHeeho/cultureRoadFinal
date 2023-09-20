@@ -14,7 +14,8 @@
 				location.href="/userLogin/main";
 			})
 			$("#myOrderListBtn").click(function(){
-				location.href="/userLogin/myOrderList";
+				location.href="/mvorderdetail/orderDetails";
+				
 			})
 		})
 	</script>

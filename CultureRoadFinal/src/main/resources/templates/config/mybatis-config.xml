@@ -30,6 +30,10 @@
 		<typeAlias type="com.culture.api.payment.vo.PaymentVO" alias="payment"/>
 		
 	-->	
+		<!-- 	결제,맵 -->
+		<typeAlias type="com.culture.api.payment.vo.PaymentVO" alias="payment"/>
+		<typeAlias type="com.culture.api.payment.vo.MvorderdetailVO" alias="mvorderdetail"/>
+		<!-- 	결제,맵 -->
 	</typeAliases>
 
 </configuration>
