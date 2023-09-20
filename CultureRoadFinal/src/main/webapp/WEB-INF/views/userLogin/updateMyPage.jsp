@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/views/common/common.jspf"%>
+<%@ include file="/WEB-INF/views/common/userLogin.jspf"%>
 	<script type="text/javascript">
 	let pwCheckPassed = false;
     let emailCheckPassed = false;
@@ -14,6 +14,7 @@
 			if(userPw == userPwConfirm){
 				$("#msg1").text("적합한 비밀번호입니다.");
 					pwCheckPassed = true;	
+					console.log(pwCheckPassed.toString());
 				} else {
 					$("#msg1").text("입력된 비밀번호가 같지 않습니다.").css("color", "red");
 					$("#userPw").val("");
@@ -86,7 +87,6 @@
 	
 	$(function(){
 		
-		
 	    $("#sendEmail").click(function(){
 			let userEmail = $("#userEmail").val();	//사용자가 입력한 이메일 
 	    	isUserEmailValid(userEmail);
@@ -101,10 +101,9 @@
 			location.href="/userLogin/main";
 		});
 		
-		$("#updateMyPageBtn").click(function () {
+		$("#pwChk").click(function(){
 			let userPw = $("#userPw").val();
 		    let userPwConfirm = $("#userPwConfirm").val();
-
 		    // 비밀번호 유효성 검사
 		    if (userPw.length > 0) {
 		    	isUserPwValid(userPw, userPwConfirm);
@@ -113,8 +112,11 @@
 					return; // 유효성 검사 실패 시 함수 종료
 					}
 		        }
+		})
+		
+		$("#updateMyPageBtn").on("click", () => {
 		        // 이메일 또는 핸드폰 인증이 완료되었는지 확인
-			if (emailCheckPassed || phoneCheckPassed || userPw.length > 0) {
+			if (pwCheckPassed || emailCheckPassed || phoneCheckPassed) {
 		            // 폼 제출
 				$("#myPageForm").attr({
 					"method": "post",
@@ -130,6 +132,37 @@
 
 	</script>
 	
+	<style>
+		 .row{
+			display: flex;
+			justify-content: center; /* 수평 가운데 정렬 */
+		} 
+		.logo{
+			margin : 0px auto;
+			width: 20%;
+		}
+		
+		table {
+			text-align : center;
+		}
+		
+		button {
+
+			justify-content: center; /* 수평 가운데 정렬 */
+		}
+		
+		input {
+		  width: 350px;
+		  height: 32px;
+		  font-size: 15px;
+		  border: 0;
+		  border-radius: 15px;
+		  outline: none;
+		  padding-left: 10px;
+		  background-color: rgb(233, 233, 233);
+		}
+
+	</style>
 	</head>
 	<body>
 		<div class="container">
@@ -142,52 +175,79 @@
 				</form>
 			</c:if>
 			<c:if test = "${not empty userLogin}">
-				<form id="myPageForm"> 
-					<div>
-						<label>이름</label>
-						<label>${userLogin.userName}</label>				
+				<div class="row">
+					<div class="col-lg-6 grid-margin stretch-card">
+						<div class="card">
+							<div class="card-body">
+								<h1 class="card-title">My Page</h1>
+									<br />
+									<form id="myPageForm">
+                    				<table class="table">
+										<tr>
+											<td>이름</td>
+											<td>${userLogin.userName}<input type="hidden" id="userId" name="userId" value="${userLogin.userId}" /></td> 
+											<td></td>
+				                        </tr>
+                        				<tr>
+					                        <td>아이디</td>
+					                        <td>${userLogin.userId}</td>
+					                        <td></td>
+				                     	</tr>
+				                     	<tr>
+											<td>비밀번호</td>
+											<td><input type="password" id="userPw" name="userPw" maxlength="20" /></td> 
+				                        	<td></td>
+				                        </tr>
+                        				<tr>
+					                        <td>비밀번호 확인</td>
+					                        <td><input type="password" id="userPwConfirm" name="userPwConfirm" maxlength="20" /></td>
+					                       <td><button type="button" id="pwChk" name ="pwChk" class="btn btn-link">비밀번호 확인</button></td>
+				                     	</tr>
+				                     	<tr><td colspan="3" id="msg1"><!-- <input type="hidden" id="msg1"> --></td></tr>
+				                     	<tr>
+											<td>이메일</td>
+											<td><input type="email" id="userEmail" name="userEmail"></td>
+											<td><button type="button" id="sendEmail" name="semdEmail" class="btn btn-link">인증요청</button></td> 
+				                        </tr>
+                        				<tr>
+					                        <td>인증코드 입력</td>
+					                        <td><input type="text" id="emailChkText" name="emailChkText"></td>
+					                        <td><button type="button" id="emailConfirm" name="emailConfirm" class="btn btn-link">인증확인</button>
+				                     	</tr>
+				                     	<tr>
+				                     		<td>전화번호</td>
+				                     		<td><input type="text" id="userPhone" name="userPhone"></td>
+				                     		<td><button type="button" id="phoneChk" name="phoneChk" class="btn btn-link">인증요청</button></td>
+				                     	</tr>
+				                     	<tr>
+				                     		<td>인증코드 입력</td>
+				                     		<td><input type="text" id="phoneChkText" name="phoneChkText"></td>
+				                     		<td><button type="button" id="phoneConfirm" name="phoneConfirm" class="btn btn-link">인증확인</button></td>
+				                     	</tr>
+				                     	<tr>
+				                     		<td>생년월일</td>
+				                     		<td>${userLogin.userBirth }</td>
+				                     		<td></td>
+				                     	</tr>
+				                     	<tr>
+				                     		<td>가입일</td>
+				                     		<td>${userLogin.userDate }</td>
+				                     		<td></td>
+				                     	</tr>
+				                     	<tr>
+				                     	<td colspan="3">
+				                     	<button type="button" id="updateMyPageBtn" name="updateMyPageBtn" class="btn btn-primary">수정 완료</button>
+				                     	<button type="button" id="cancelBtn" name="cancelBtn" class="btn btn-link">메인페이지로</button>
+				                     	</td>
+										</tr>
+										
+									</table>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div>
-						<label>아이디</label>
- 		                <input type="hidden" id="userId" name="userId" value="${userLogin.userId}">
-						<label>${userLogin.userId}</label>
-					</div>
-					<div>
-						<label>비밀번호</label>
-						<input type="password" id="userPw" name="userPw" maxlength="20" placeholder="비밀번호를 입력해 주세요." />
-						<label>비밀번호 확인</label>
-						<input type="password" id="userPwConfirm" name="userPwConfirm" />
-						<button type="button" id="pwChk" name="pwChk">비밀번호체크</button>
-						<span id="msg1"></span>			
-					</div>
-					<div>
-						<label>이메일</label>
-						<input type="email" id="userEmail" name="userEmail" />
-						<button type="button" id="sendEmail" name="sendEmail">인증 요청</button>
-						<label>인증코드 입력</label>
-						<input type="text" id="emailChkText" name = "emailChkText" />
-						<button type="button" id="emailConfirm" name ="emailConfirm">인증 확인</button>
-					</div>
-					<div>
-						<label>전화번호</label>
-						<input type="text" id="userPhone" name="userPhone"/>
-						<button type="button" id="phoneChk" name="phoneChk">인증 요청</button>
-						<br/>
-						<input type="text" id="phoneChkText" name="phoneChkText" />
-						<button type="button" id="phoneConfirm" name="phoneConfirm">인증 확인</button>
-					</div>
-					<div>
-						<label>생년월일</label>
-						<label>${userLogin.userBirth }</label>
-					</div>
-					<div>
-						<label>가입일</label>
-						<label>${userLogin.userDate }</label>
-					</div>
-					<button type="button" id="updateMyPageBtn" name="updateMyPageBtn">수정 완료</button>
-					<button type="button" id="cancelBtn" name="cancelBtn">메인페이지로</button>
-				</form>
+				
 			</c:if> 
 		</div>	
-	</body>
 </html>

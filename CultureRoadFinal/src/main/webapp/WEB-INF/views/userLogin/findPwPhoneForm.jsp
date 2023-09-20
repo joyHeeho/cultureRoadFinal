@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="/WEB-INF/views/common/common.jspf" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/common/userLogin.jspf"%>
 
 <script type="text/javascript">
 	
@@ -79,36 +80,64 @@
 	}) //$(function(){})함수 끝
 	
 	</script>
+<style>
+		.logo{
+				margin : 0% 20%;
+				width: 20%;
+			}
+		button {
+			display: flex;
+		  align-items: center;
+		}
+		
+	</style>
 
 
-	</head>
-	<body>
-		<div class="container">
-			<div class="logo">
-				<img src="/resources/main/image/cultureLogo.jpg">
+</head>
+<body>
+	<div class="container-scroller">
+		<div class="container-fluid page-body-wrapper full-page-wrapper">
+			<div class="content-wrapper d-flex align-items-center auth">
+				<div class="row flex-grow">
+					<div class="col-lg-4 mx-auto">
+						<div class="auth-form-light text-left p-5">
+							<div class="logo">
+								<img src="/resources/main/image/cultureLogo.jpg">
+							</div>
+							<form class="pt-3" id="findPwPhoneForm">
+								<div class="form-group">
+									<label>아이디</label> <input type="text"
+										class="form-control form-control-lg" id="userId" name="userId">
+								</div>
+								<div class="form-group">
+									<label>생년월일</label> <input type="text"
+										class="form-control form-control-lg" id="userBirth"
+										name="userBirth">
+								</div>
+								<div class="form-group">
+									<label>핸드폰번호</label> <input type="text"
+										class="form-control form-control-lg" id="userPhone"
+										name="userPhone" placeholder="가입시 등록한 전화번호를 입력하세요">
+								</div>
+								<button type="button" id="findPwPhBtn" name="findPwPhBtn"
+									class="btn btn-primary">확인</button>
+								<button type="button" id="cancelBtn" name="cancelBtn"
+									class="btn btn-light">취소</button>
+							</form>
+							<form id="phoneConfirmForm">
+								<br />
+								<button type="button" id="sendPhone" name="sendPhone"
+									class="btn btn-primary">인증 요청</button>
+								<label>인증코드 입력</label> <br /> <input type="text"
+									id="phoneChkText" name="phoneChkText" />
+								<button type="button" id="phoneConfirm" name="phoneConfirm"
+									class="btn btn-primary">인증 확인</button>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
-			<form id="findPwPhoneForm">
-				<div>
-					<label>아이디</label>	
-					<input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요"/>
-				</div>
-				<div>
-					<label>생년월일</label>
-					<input type="text" id="userBirth" name="userBirth" />
-				</div>
-				<div>
-					<label>전화번호</label>
-					<input type="text" id="userPhone" name="userPhone"  placeholder="가입시 등록한 전화번호를 입력하세요" />
-				</div>
-				<button type="button" id="findPwPhBtn" name="findPhEmBtn">확인</button>
-				<button type="button" id="cancelBtn" name="cancelBtn">취소</button>
-			</form>
-			<form id="phoneConfirmForm">
-				<button type="button" id="sendPhone" name="sendPhone">인증 요청</button>
-				<label>인증코드 입력</label>
-				<input type="text" id="phoneChkText" name = "phoneChkText" />
-				<button type="button" id="phoneConfirm" name ="phoneConfirm">인증 확인</button>
-			</form>
 		</div>
-	</body>
+	</div>
+</body>
 </html>

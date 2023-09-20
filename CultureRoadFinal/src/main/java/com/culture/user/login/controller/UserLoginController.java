@@ -172,7 +172,7 @@ public class UserLoginController {
 	
 	@GetMapping("/enterPw2")
 	public String enterPw2() {
-		log.info("정보수정을 위한 비밀번호 입력");
+		log.info("탈퇴를 위한 비밀번호 입력");
 		return "userLogin/enterPw2";
 	}
 	

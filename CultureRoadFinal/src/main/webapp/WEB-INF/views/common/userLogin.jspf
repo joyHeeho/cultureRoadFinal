@@ -5,8 +5,8 @@
 	<html>
 		<head>
 			<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scake=1" />
-			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+			<!-- <meta name="viewport" content="width=device-width, initial-scake=1" /> -->
+			<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> -->
 			<title>문화빛길</title>
 			
 			<script type="text/javascript" src="/resources/main/js/jquery-3.7.0.min.js"></script>
@@ -39,8 +39,8 @@
     <link rel="stylesheet" href="/resources/adminMain/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
     <!-- End plugin css for this page -->
      <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="/resources/adminMain/assets/vendors/select2/select2.min.css">
-    <link rel="stylesheet" href="/resources/adminMain/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/resources/adminMain/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="/resources/adminMain/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css"> -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->

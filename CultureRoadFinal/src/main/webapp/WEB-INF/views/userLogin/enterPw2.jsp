@@ -35,6 +35,41 @@
 	})
 		
 	</script>
+	<style>
+		/* .logo{
+				margin : 150px auto;
+				width: 20%;
+			}
+		form {
+		    position: absolute;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		}  */
+		.container {
+		   /*  position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%); */
+		    margin: 150px 40%;
+		}
+		.logo{
+		width : 20%;
+		}
+		input {
+		  width: 250px;
+		  height: 32px;
+		  font-size: 15px;
+		  border: 0;
+		  border-radius: 15px;
+		  outline: none;
+		  padding-left: 10px; 
+		  background-color: rgb(233, 233, 233);
+		}
+		button {
+			margin : 20px 30px;
+		}
+	</style>
+	
 	</head>
 	<body>
 		<div class="container">
@@ -44,10 +79,11 @@
 			<form id="pwEnterForm">
 				<input type="hidden" id="userId" name="userId" value="${userLogin.userId}">
 				<input type="password" id="userPw" name="userPw" placeholder="비밀번호를 입력하세요">
-				<button type="button" id="enterPwBtn" name="enterPwBtn">확인</button>
-				<button type="button" id="cancelBtn" name="cancelBtn">취소</button>
+				<br />
+				<button type="button" id="enterPwBtn" name="enterPwBtn" class="btn btn-outline-warning btn-fw">탈퇴</button>
+				<button type="button" id="cancelBtn" name="cancelBtn" class="btn btn-outline-dark btn-fw">취소</button>
 			</form>
-
+			
 		</div>		
 	</body>
 </html>
