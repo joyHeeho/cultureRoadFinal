@@ -22,7 +22,7 @@
 	<body>
 		<div class="container">
 			<div class="logo">
-				<img src="/resources/main/image/cultureLogo.jpg">
+				<img src="/resources/main/image/cultureLogo.jpg" style="width: 50%;">
 			</div>
 			<c:if test="${empty userLogin}">
 				<form class="form-signin" id="loginForm">
@@ -63,5 +63,8 @@
 				</form>
 			</c:if>	
 		</div>		
+		
+		
+		
 	</body>
 </html>

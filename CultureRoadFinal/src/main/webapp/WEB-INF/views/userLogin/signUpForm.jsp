@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/common/userLogin.jspf"%>
+
+<style>
+	.contain {
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+	}
+	
+	.logo {
+	margin : 0px auto;
+	
+	}
+	
+</style>
 	<script type="text/javascript">
 	  let idCheckPassed = false;
       let pwCheckPassed = false;
@@ -171,15 +184,14 @@
 	</script>
 	</head>
 	<body>
-		<div class="container">
-			<div class="logo">
-				<img src="/resources/main/image/cultureLogo.jpg">
-			</div>
+		<div class="contain">
 			<div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
+               <div class="card">
+                <div class="logo">
+				<img src="/resources/main/image/cultureLogo.jpg">
+				</div>
                   <div class="card-body">
                     <h4 class="card-title">회원가입</h4>
-                    <p class="card-description"> 양식에 맞게 입력해 주세요. </p>
                     <form class="forms-sample">
                     	<input type="hidden" id="to" name="to" />
                       <div class="form-group row">
@@ -194,7 +206,7 @@
                           <input type="text" class="form-control" id="userId" name="userId" />
                         </div>
                         <div class="col-sm-3">
-                        <button type="button" id="idChk" name="idChk">중복확인</button>
+                        <button type="button" id="idChk" name="idChk" class="btn btn-success">중복확인</button>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -202,14 +214,16 @@
                         <div class="col-sm-6">
                           <input type="password" class="form-control" id="userPw" name="userPw" maxlength="20"/>
                         </div>
-                       </div>
-                       <div class="form-group row">
+                        <div class="col-sm-3">
+                        </div>
+                       <!-- </div>
+                       <div class="form-group row"> -->
                         <label for="exampleInputPassword2" class="col-sm-3 col-form-label">비밀번호 확인</label>
                         <div class="col-sm-6">
                           <input type="password" class="form-control" id="userPwConfirm" name="userPwConfirm" maxlength="20"/>
                         </div>  
                         <div class="col-sm-3">
-                         <button type="button" id="pwChk" name="pwChk">비밀번호 확인</button>
+                         <button type="button" id="pwChk" name="pwChk" class="btn btn-success">비밀번호 확인</button>
                         </div>
                         	<span id="msg1"></span>
                       </div>
@@ -217,33 +231,39 @@
                         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">이메일</label>
                         <div class="col-sm-6">
                           <input type="email" class="form-control" id="userEmail" name="userEmail" />
-                         </div>
-                         <div class="col-sm-3">
-                          <button type="button" id="sendEmail" name="sendEmail">인증요청</button>
                         </div>
-                      </div>
-                      <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">인증코드 입력</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-3">
+                          <button type="button" id="sendEmail" name="sendEmail" class="btn btn-warning">인증요청</button>
+                        </div>
+                	 
+                        <label for="exampleInputEmail2"class="col-sm-3 col-form-label">인증코드 입력</label>
+                        <div class="col-sm-6">
                           <input type="email" class="form-control" id="emailChkText" name="emailChkText" />
-                        <button type="button" id="emailConfirm" name="emailConfirm">인증확인</button>
+                        </div>
+                        <div class="col-sm-3">
+                        <button type="button" id="emailConfirm" name="emailConfirm" class="btn btn-success">인증확인</button>
                         </div>
                       </div>
+                     
                       <div class="form-group row">
                         <label for="exampleInputMobile" class="col-sm-3 col-form-label">전화번호</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
                           <input type="text" class="form-control" id="userPhone" name="userPhone"/>
-                          <button type="button" id="phoneChk" name="phoneChk">인증요청</button>
+                        </div>
+                        <div class="col-sm-3">
+                          <button type="button" id="phoneChk" name="phoneChk" class="btn btn-warning">인증요청</button>
                         </div>
                         <label for="exampleInputMobile" class="col-sm-3 col-form-label">인증코드 입력</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
                           <input type="text" class="form-control" id="phoneChkText" name="phoneChkText"/>
-                          <button type="button" id="phoneConfirm" name="phoneConfirm">인증확인</button>
+                        </div>
+                        <div class="col-sm-3">
+                          <button type="button" id="phoneConfirm" name="phoneConfirm" class="btn btn-success">인증확인</button>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">생년월일</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-6">
                           <input type="text" class="form-control" id="userBirth" name="userBirth" placeholder="000101 형식으로 입력하세요" maxlength="6" />
                         </div>
                       </div>
@@ -260,13 +280,15 @@
                         </div>
                       </div> -->
                     
-                      <button type="button" class="btn btn-primary me-2" id="confirmBtn" name="confirmBtn">회원가입</button>
-                      <button type="button" class="btn btn-light" id="cancelBtn" name="cancelBtn">취소</button>
+                      <button type="button" class="btn btn-success btn-rounded btn-fw" id="confirmBtn" name="confirmBtn">회원가입</button>
+                      <button type="button" class="btn btn-light btn-rounded btn-fw" id="cancelBtn" name="cancelBtn">취소</button>
                     </form>
                   </div>
                 </div>
               </div>
 		</div>
+	<%-- 	<jsp:include page="../mainTemplate/footer.jsp"/> --%>
+
 	</body>
 </html>
 

@@ -43,7 +43,16 @@ public class ApiController {
 		movie.setOverview(overview);
 		model.addAttribute("movie",movie);
 	
-		return "client/movie/movieDetail";
+		return "movie/template";
+	}
+	
+	@PostMapping("/MovieSeatBooking/{id}")
+	public String MovieSeatBooking(@PathVariable String id, Model model) throws Exception {
+		ApiMovieVO movie = apiMovieService.MovieSeatBooking(id);
+
+		model.addAttribute("movie",movie);
+		
+		return "movie/MovieSeatBooking";
 	}
 	
 	@PostMapping("/movieSearch")
