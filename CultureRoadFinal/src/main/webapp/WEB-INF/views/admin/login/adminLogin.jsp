@@ -41,7 +41,7 @@
 			<div>
 				<c:if test="${empty adminLogin}">
 					<div class="logo">
-						<img src="/resources/main/image/cultureLogo.jpg">
+						<h2>관리자 로그인</h2>
 					</div>
 					<form id="loginForm">
 						<div>
@@ -55,11 +55,10 @@
 					</form>
 				</c:if>
 				<c:if test="${not empty adminLogin}">
-					 <jsp:include page="main.jsp"/>
+					
+					 <a href="/admin/main" class="btn-success">관리자 페이지</a>
 				</c:if>
 			</div>
 		</div>	
 	</body>
 </html>
-
-

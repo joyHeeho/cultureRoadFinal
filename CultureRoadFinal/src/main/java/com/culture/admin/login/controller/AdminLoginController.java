@@ -63,11 +63,11 @@ public class AdminLoginController {
 		return url;
 	}
 	
-	@RequestMapping("/logout")
+	@RequestMapping("logout")
 	   public String logout(SessionStatus sessionStatus) {
 	      log.info("관리자 로그아웃 처리");
 	      sessionStatus.setComplete();
-	      return "redirect:/";
+	      return "redirect:/";                             
 	   }
 
 	@GetMapping("/main")
