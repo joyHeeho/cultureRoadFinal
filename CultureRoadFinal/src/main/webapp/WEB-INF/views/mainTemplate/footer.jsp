@@ -4,7 +4,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ include file="/WEB-INF/views/common/common.jspf" %>
+<style>
 
+</style>
 
   <footer>
     <div class="container">
