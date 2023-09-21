@@ -10,4 +10,5 @@ public interface ApiMovieService {
 	List<ApiMovieVO> searchMovie(String searchTitle);
 	List<ApiMovieVO> getPopularMovies();
 	List<ApiMovieVO> getUpcomingMovies();
+	ApiMovieVO MovieSeatBooking(String id);
 }

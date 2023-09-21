@@ -29,9 +29,13 @@
 	    <link rel="stylesheet" href="/resources/main/assets/css/owl.css">
 	    <link rel="stylesheet" href="/resources/main/assets/css/animate.css">
 	    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+<<<<<<< HEAD
 	    
 		<link rel="stylesheet" type="text/css" href="/resources/main/vendor/bootstrap/css/bootstrap.min.css" />
 		
+=======
+		<link rel="stylesheet" type="text/css" href="/resources/main/vendor/bootstrap/css/bootstrap.min.css" />
+>>>>>>> refs/remotes/origin/develop
 		<script type="text/javascript" src="/resources/main/js/jquery-3.7.0.min.js"></script>
 		<script type="text/javascript" src="/resources/main/js/common.js"></script>
 		<script type="text/javascript" src="/resources/main/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -50,6 +54,10 @@
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
     <script src="/resources/main/vendor/jquery/jquery.min.js"></script>
+<<<<<<< HEAD
+=======
+    <script src="/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+>>>>>>> refs/remotes/origin/develop
 
     <script src="/resources/main/assets/js/isotope.min.js"></script>
     <script src="/resources/main/assets/js/owl-carousel.js"></script>
@@ -104,5 +112,9 @@
     
     <script src="/resources/main/js/modernizr-custom.js"></script>
     <script src="/resources/main/js/ie-checker.js"></script>
+<<<<<<< HEAD
     <script src="/resources/main/js/swiper.min.js"></script>
+=======
+    <script src="/resources/main/assets/js/swiper.min.js"></script>
+>>>>>>> refs/remotes/origin/develop
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>

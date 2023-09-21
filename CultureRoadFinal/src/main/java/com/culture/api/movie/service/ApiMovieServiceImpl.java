@@ -201,4 +201,12 @@ public class ApiMovieServiceImpl implements ApiMovieService {
         }
 		return data;
 	}
+	
+	@Override
+	public ApiMovieVO MovieSeatBooking(String id) {
+		String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + API_KEY + "&language=ko-KO";
+		ApiMovieVO movie = restTemplate.getForObject(url, ApiMovieVO.class);
+		return movie;
+	}
+
 }
