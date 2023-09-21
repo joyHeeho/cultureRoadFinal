@@ -31,16 +31,7 @@
 		<typeAlias type="com.culture.user.reply.vo.UserReplyVO" alias="userReply"/>
 		<typeAlias type="com.culture.user.payment.vo.UserPaymentVO" alias="userPayment"/>
 		<typeAlias type="com.culture.user.comment.vo.UserCommentVO" alias="userComment"/>
-		<typeAlias type="com.culture.user.qna.vo.UserQnAVO" alias="userQnA"/> -->
 
-	 <typeAlias type="com.culture.user.notice.vo.UserNoticeVO" alias="userNotice"/> 
- 		<typeAlias type="com.culture.user.board.vo.UserBoardVO" alias="userBoard"/> 
- 		<typeAlias type="com.culture.user.reply.vo.UserReplyVO" alias="userReply"/> 
-		<typeAlias type="com.culture.user.payment.vo.UserPaymentVO" alias="userPayment"/>
-		<typeAlias type="com.culture.user.comment.vo.UserCommentVO" alias="userComment"/>		
-    <typeAlias type="com.culture.user.qna.vo.UserQnAVO" alias="userQnA"/>
-		
-		
 	</typeAliases>
 
 </configuration>
