@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.culture.admin.login.dao.AdminLoginDAO;
 import com.culture.admin.login.vo.AdminLoginVO;
+import com.culture.user.login.dao.UserLoginDAO;
 
 import lombok.Setter;
 
@@ -13,6 +14,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
 	@Setter(onMethod_ = @Autowired)
 	private AdminLoginDAO adminLoginDAO;
+	
+	@Setter(onMethod_ = @Autowired)
+	private UserLoginDAO userLoginDAO;
 
 	@Override
 	public AdminLoginVO adminLogin(AdminLoginVO alvo) {

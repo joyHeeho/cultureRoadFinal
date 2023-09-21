@@ -110,11 +110,68 @@
 		WHERE user_id = #{userId} and user_birth = #{userBirth} and user_phone = #{userPhone}
 	</select>
 	
-	<select id="myOrderList" parameterType="userLogin" resultType="userLogin">
+<!-- 	<select id="myOrderList" parameterType="userLogin" resultType="userLogin">
 		SELECT u.user_no userNo, u.user_id userId, m.mv_code, m.mv_pay_status, m.mv_order_date, m.mv_headcnt,
 		m.mv_date, m.price  
 		FROM USERS U INNER JOIN MVPAYMENTS M
 		WHERE u.user_no = m.user_no
+	</select> -->
+	
+	<select id="userList" parameterType="userLogin" resultType="userLogin">
+		SELECT   user_no userNo, user_id userId, user_pw userPw, user_name userName, user_email userEmail, 
+       user_phone userPhone, TO_CHAR(TO_DATE(user_birth, 'YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth, 
+       user_date userDate, user_delete userDelete,  CASE WHEN user_delete = 0 THEN '회원' WHEN user_delete = 1 THEN '탈퇴' END AS userStatus
+		FROM   USERS
 	</select>
+	
+		<!-- sql이라고 하는 엘리먼트는 공통으로 쓰는 구문입니다~ 라는 뜻! -->
+	<sql id="userSearch">
+		<if test="search=='userId'">
+			<![CDATA[ user_id LIKE '%'||#{keyword} || '%' ]]>
+		</if>
+		<if test="search=='userName'">
+			<![CDATA[ user_name LIKE '%'||#{keyword} || '%' ]]>
+		</if>
+		<if test="search=='userState'">
+			<![CDATA[ user_state LIKE '%'||#{keyword} || '%' ]]>
+		</if>	
+	</sql>
+	
+	<select id="userCnt" parameterType="userLogin" resultType="int">
+		SELECT COUNT(*)
+		FROM USERS
+		<trim prefix="where(" suffix=")">
+         <include refid="userSearch"></include>
+      	</trim>
+	</select>
+		   <!-- 게시판 리스트 기본 조회 -->
+      <!-- if문이 만족했을때만 where절 사용. -->
+   <select id="userInfo" resultType="userLogin" parameterType="userLogin">
+      <![CDATA[
+       SELECT   user_no userNo, user_id userId, user_name userName, user_email userEmail, 
+       user_phone userPhone, TO_CHAR(TO_DATE(user_birth, 'YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth, 
+       user_date userDate, user_delete userDelete,  CASE WHEN user_delete = 0 THEN '회원' WHEN user_delete = 1 THEN '탈퇴' END AS userStatus
+	   FROM  (
+           select /*+ index_desc(users users_pk)*/
+               rownum as rnum, user_no, user_id, user_name, user_email, user_phone, user_birth, user_date, user_delete
+           from users
+        where]]>
+        <trim prefix="(" suffix=") and" prefixOverrides="and">
+         <include refid="userSearch"></include>
+      </trim>
+      <![CDATA[ rownum <= #{pageNum} * #{amount}
+         )userList
+      WHERE rnum>(#{pageNum}-1)*#{amount}
+      ]]>
+   </select>
+	
+	<!-- <select id="userInfo" parameterType="userLogin" resultType="userLogin">
+		SELECT   user_no userNo, user_id userId, user_pw userPw, user_name userName, user_email userEmail, 
+       user_phone userPhone, TO_CHAR(TO_DATE(user_birth, 'YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth, 
+       user_date userDate, user_delete userDelete,  CASE WHEN user_delete = 0 THEN '회원' WHEN user_delete = 1 THEN '탈퇴' END AS userStatus
+		FROM   USERS
+		
+		WHERE 	
+	</select> -->
 
 </mapper>

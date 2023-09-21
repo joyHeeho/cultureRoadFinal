@@ -1,4 +1,13 @@
-<footer class="footer stiky-bottom">
+<style>
+/* <!--
+footer {
+	position: fixed;
+	bottom: 0;
+} */
+</style>
+
+
+<footer class="footer">
 	<div class="footer-inner-wraper">
 		<div
 			class="d-sm-flex justify-content-center justify-content-sm-between py-2">

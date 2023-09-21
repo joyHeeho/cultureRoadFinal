@@ -1,7 +1,7 @@
 package com.culture.user.login.dao;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
-
 
 import com.culture.user.login.vo.UserLoginVO;
 @Mapper
@@ -21,4 +21,8 @@ public interface UserLoginDAO {
 	public UserLoginVO findIdPhone(UserLoginVO uvo);
 	public int personalPwInfoPhone(UserLoginVO uvo);
 	public UserLoginVO myOrderList(UserLoginVO uvo);
+
+	public List<UserLoginVO> userList(UserLoginVO uvo);
+	public List<UserLoginVO> userInfo(UserLoginVO uvo);
+	public int userCnt(UserLoginVO uvo); 
 }

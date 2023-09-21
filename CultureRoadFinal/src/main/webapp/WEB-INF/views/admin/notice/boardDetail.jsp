@@ -13,7 +13,7 @@
 	})
 	</script>
 	<style type="text/css">
-     	.contentContainer{padding-top: 20px;}
+     	.contentContainer{padding-top: 120px;}
      	        /* 전체 컨테이너 스타일링 */
         .contentContainer {
             padding: 20px;
