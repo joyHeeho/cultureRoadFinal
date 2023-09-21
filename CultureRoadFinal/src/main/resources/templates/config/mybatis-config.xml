@@ -4,52 +4,34 @@
 
 	<typeAliases>
 		<typeAlias type="com.culture.admin.login.vo.AdminLoginVO" alias="adminLogin"/>
+
+		<typeAlias type="com.culture.admin.notice.vo.AdminNoticeVO" alias="adminNotice"/>
+
 		<typeAlias type="com.culture.admin.notice.vo.NoticeVO" alias="adminNotice"/>
 		<typeAlias type="com.culture.admin.notice.vo.AdminNoticeVO" alias="adminNotice"/>
+
 		<typeAlias type="com.culture.admin.board.vo.AdminBoardVO" alias="adminBoard"/>
 		<typeAlias type="com.culture.admin.reply.vo.AdminReplyVO" alias="adminReply"/>
 		<typeAlias type="com.culture.admin.payment.vo.AdminPaymentVO" alias="adminPayment"/>
 		<typeAlias type="com.culture.admin.comment.vo.AdminCommentVO" alias="adminComment"/>
-		<typeAlias type="com.culture.admin.qna.vo.AdminQnAVO" alias="adminQnA"/>
+		<typeAlias type="com.culture.admin.qna.vo.AdminQnAVO" alias="adminQnA"/> -->
 		
 		<typeAlias type="com.culture.user.login.vo.UserLoginVO" alias="userLogin"/>
+
+		<typeAlias type="com.culture.user.notice.vo.UserNoticeVO" alias="userNotice"/>
+
 		<typeAlias type="com.culture.user.board.vo.MovieBoardVO" alias="movieBoard"/>
 		<typeAlias type="com.culture.user.board.vo.MovieReplyVO" alias="movieReply"/>
     
 		<typeAlias type="com.culture.user.notice.vo.UserNoticeVO" alias="userNotice"/>
 		<typeAlias type="com.culture.user.notice.vo.UserNoticeVO" alias="userNotice"/>
 
+
 		<typeAlias type="com.culture.user.board.vo.UserBoardVO" alias="userBoard"/>
 		<typeAlias type="com.culture.user.reply.vo.UserReplyVO" alias="userReply"/>
 		<typeAlias type="com.culture.user.payment.vo.UserPaymentVO" alias="userPayment"/>
 		<typeAlias type="com.culture.user.comment.vo.UserCommentVO" alias="userComment"/>
-<<<<<<< HEAD
-	-->	
-		<typeAlias type="com.culture.user.qna.vo.UserQnaVO" alias="userQnA"/>
-	
-	<!--
-		API가 쿼리문이,,, 있나,,? 혹시 모르니까,, 남겨놓습니다.... 
-		<typeAlias type="com.culture.api.movie.vo.MovieVO" alias="movie"/>
-		<typeAlias type="com.culture.api.phone.vo.PhoneVO" alias="phone"/>
-		<typeAlias type="com.culture.api.email.vo.EmailVO" alias="email"/>
-		<typeAlias type="com.culture.api.payment.vo.PaymentVO" alias="payment"/>
-=======
-		<typeAlias type="com.culture.user.qna.vo.UserQnAVO" alias="userQnA"/>
 
-	 <typeAlias type="com.culture.user.notice.vo.UserNoticeVO" alias="userNotice"/> 
- 		<typeAlias type="com.culture.user.board.vo.UserBoardVO" alias="userBoard"/> 
- 		<typeAlias type="com.culture.user.reply.vo.UserReplyVO" alias="userReply"/> 
-		<typeAlias type="com.culture.user.payment.vo.UserPaymentVO" alias="userPayment"/>
-		<typeAlias type="com.culture.user.comment.vo.UserCommentVO" alias="userComment"/>		
-    <typeAlias type="com.culture.user.qna.vo.UserQnAVO" alias="userQnA"/>
-		
->>>>>>> refs/remotes/origin/develop
-		
-<<<<<<< HEAD
-	-->	
-	
-=======
->>>>>>> refs/remotes/origin/develop
 	</typeAliases>
 
 </configuration>

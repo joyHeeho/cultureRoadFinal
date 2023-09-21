@@ -32,7 +32,7 @@
 
 nav li a {
     display: block;
-   font-weight: 300;
+	font-weight: 300;
     font-size: 14px;
     text-transform: capitalize;
     color: #fff;
