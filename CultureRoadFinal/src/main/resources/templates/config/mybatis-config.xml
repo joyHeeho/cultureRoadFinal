@@ -5,6 +5,15 @@
 	<typeAliases>
 		<typeAlias type="com.culture.admin.login.vo.AdminLoginVO" alias="adminLogin"/>
 
+<!-- 		<typeAlias type="com.culture.admin.notice.vo.AdminNoticeVO" alias="adminNotice"/> -->
+<!-- 		<typeAlias type="com.culture.admin.board.vo.AdminBoardVO" alias="adminBoard"/> -->
+<!-- 		<typeAlias type="com.culture.admin.reply.vo.AdminReplyVO" alias="adminReply"/> -->
+<!-- 		<typeAlias type="com.culture.admin.payment.vo.AdminPaymentVO" alias="adminPayment"/> -->
+		<typeAlias type="com.culture.admin.comment.vo.AdminCommentVO" alias="adminComment"/>
+<!-- 		<typeAlias type="com.culture.admin.qna.vo.AdminQnAVO" alias="adminQnA"/> -->
+		
+
+
 		<typeAlias type="com.culture.admin.notice.vo.AdminNoticeVO" alias="adminNotice"/>
 
 		<typeAlias type="com.culture.admin.notice.vo.NoticeVO" alias="adminNotice"/>
@@ -15,6 +24,7 @@
 		<typeAlias type="com.culture.admin.payment.vo.AdminPaymentVO" alias="adminPayment"/>
 		<typeAlias type="com.culture.admin.comment.vo.AdminCommentVO" alias="adminComment"/>
 		<typeAlias type="com.culture.admin.qna.vo.AdminQnAVO" alias="adminQnA"/> -->
+
 		
 		<typeAlias type="com.culture.user.login.vo.UserLoginVO" alias="userLogin"/>
 

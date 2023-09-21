@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.culture.api.movie.service.ApiMovieService;
+import com.culture.api.movie.vo.ApiMovieCredits;
 import com.culture.api.movie.vo.ApiMovieVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,18 +34,40 @@ public class ApiController {
 		return "index";
 	}
 	
+	/*
+	 * @PostMapping("/movieCredits/{id}") public String
+	 * getMovieCredits(@PathVariable String id, Model model) { List<ApiMovieCredits>
+	 * movies = apiMovieService.getMovieCredits(id); log.info("name 오기 성공~" );
+	 * model.addAttribute("movies",movies);
+	 * 
+	 * return "movice/movieDetail"; }
+	 */
+	
 	@PostMapping("/movieDetail/{id}")
 	public String getDetail(@PathVariable String id, Model model) {
-		ApiMovieVO movie = apiMovieService.getMovieDetail(id);
-		String overview = movie.getOverview();
-		if(overview=="") {
-			overview = "준비중 입니다.";
-		}
-		movie.setOverview(overview);
-		model.addAttribute("movie",movie);
-	
-		return "movie/template";
+	    log.info("name 오기 성공~");
+	    
+	    // 영화 정보 가져오기
+	    ApiMovieVO movie = apiMovieService.getMovieDetail(id);
+	    
+	    // 크레딧 정보 가져오기
+	    List<ApiMovieCredits> movies = apiMovieService.getMovieCredits(id);
+	    
+	    
+	    // 영화 개요 처리
+	    String overview = movie.getOverview();
+	    if (overview == null || overview.isEmpty()) {
+	        overview = "준비중 입니다.";
+	    }
+	    movie.setOverview(overview);
+	    
+	    model.addAttribute("movie", movie);
+	    model.addAttribute("movies", movies);
+	    
+	    // "movie/movieDetail" 뷰로 이동
+	    return "movie/movieDetail";
 	}
+
 	
 	@PostMapping("/MovieSeatBooking/{id}")
 	public String MovieSeatBooking(@PathVariable String id, Model model) throws Exception {
