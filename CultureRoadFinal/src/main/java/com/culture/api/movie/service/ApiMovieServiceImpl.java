@@ -8,15 +8,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.culture.api.movie.vo.ApiMovieCredits;
 import com.culture.api.movie.vo.ApiMovieVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ApiMovieServiceImpl implements ApiMovieService {
 	@Autowired
 	private RestTemplate restTemplate;
-	private final String API_KEY = "2f086445ca13875b5bf9a9f2fb2bfa36";
+	private final String API_KEY = "a56acee23242b46d2a8b07c40f907286";
 	
 	@Override
 	public List<ApiMovieVO> getNowPlayingMovies() {
@@ -199,6 +203,53 @@ public class ApiMovieServiceImpl implements ApiMovieService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+		return data;
+	}
+	
+	@Override
+	public List<ApiMovieCredits> getMovieCredits(String id) {
+		int page=1;
+		String url = "https://api.themoviedb.org/3/movie/" + id + "/credits?language=ko-KO&api_key=" + API_KEY;
+		
+		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+		String responseBody = response.getBody();
+		
+		List<ApiMovieCredits> data = new ArrayList<>();
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			JsonNode rootNode = objectMapper.readTree(responseBody);
+			JsonNode results = rootNode.path("cast");
+			
+			for (JsonNode node : results) {
+				ApiMovieCredits movieVO = new ApiMovieCredits();
+				
+				String gender = node.path("gender").asText();
+				String known_for_department = node.path("known_for_department").asText();
+				String name = node.path("name").asText();
+				String original_name = node.path("original_name").asText();
+				String cast_id = node.path("cast_id").asText();
+				String character = node.path("character").asText();
+				String credit_id = node.path("credit_id").asText();
+				String order = node.path("order").asText();
+				String profile_path = node.path("profile_path").asText();
+				
+				movieVO.setGender(Integer.parseInt(gender));
+				movieVO.setId(Integer.parseInt(id));
+				movieVO.setKnown_for_department(known_for_department);
+				movieVO.setName(name);
+				movieVO.setOriginal_name(original_name);
+				movieVO.setId(Integer.parseInt(id));
+				movieVO.setCast_id(Integer.parseInt(cast_id));
+				movieVO.setCharacter(character);
+				movieVO.setCredit_id(credit_id);
+				movieVO.setOrder(Integer.parseInt(order));
+				movieVO.setProfile_path(profile_path);
+				data.add(movieVO);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		log.info("adfasdfasf"+data.toString());
 		return data;
 	}
 	

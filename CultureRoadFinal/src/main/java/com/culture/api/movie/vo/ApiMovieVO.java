@@ -22,4 +22,5 @@ public class ApiMovieVO {
 	private int vote_count;
 	private int rank;
 	private String original_title;
+	private List<ApiMovieCredits> credits;
 }

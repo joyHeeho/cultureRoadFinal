@@ -46,6 +46,12 @@ public class CommentServiceImpl implements CommentService {
 		result = commentDAO.commentDelete(mv_co_num);
 		return result;
 	}
+
+	@Override
+	public int commentLikeCountPlus(UserCommentVO rvo) {
+		int CountPlus = commentDAO.commentLikeCountPlus(rvo);
+		return CountPlus;
+	}
 	
 	
 

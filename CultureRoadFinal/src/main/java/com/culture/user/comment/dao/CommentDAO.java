@@ -16,4 +16,5 @@ public interface CommentDAO {
 	public int commentDelete(int mv_co_num);
 	public int commentChoiceDelete(int mv_co_num);
 	public int commentCnt(int mv_co_num);
+	public int commentLikeCountPlus(UserCommentVO rvo);
 }

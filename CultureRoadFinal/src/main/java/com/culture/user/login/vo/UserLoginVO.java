@@ -18,5 +18,6 @@ public class UserLoginVO extends CommonVO{
 	private String userBirth;
 	private String userDate;
 	private int userDelete;
+
 	private String userStatus;
 }
