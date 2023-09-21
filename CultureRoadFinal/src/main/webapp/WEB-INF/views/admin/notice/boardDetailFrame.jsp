@@ -130,7 +130,7 @@
               <%@ include file="/WEB-INF/views/admin/notice/boardDetail.jsp"%>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-<%--          	 <%@ include file="/WEB-INF/views/admin/main/footer.jsp"%>  --%>
+         	 <%@ include file="/WEB-INF/views/admin/main/footer.jsp"%> 
           <!-- partial -->
         </div>
 		</div>

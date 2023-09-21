@@ -5,47 +5,52 @@
 
 	</script>
 	<style type="text/css">
-     	.contentContainer{padding-top: 20px;
-     			height: 100%;
-     		}
-        .contentContainer {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        /* 제목 부분 */
-        .contentTit {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .contentTit h3 {
-            color: #333;
-        }
-
-        /* 테이블 스타일링 */
-        .contentTB .table {
-            border-collapse: collapse;
-        }
-
-        .contentTB .table th, .contentTB .table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-
-        .contentTB .table-striped tbody tr:nth-of-type(odd) {
-            background-color: rgba(0,0,0,.05);
-        }
-
-        /* 테이블 행 높이 조절 */
-        .table-tr-height {
-            height: 680px; /* 원하는 높이로 설정 */
-        }
-     	
-    </style>
+		#wrapper {
+			height: auto;
+			min-height: 100%;
+			padding-bottom: (footer높이);
+		}
+		
+		footer {
+			height: (footer높이);
+			position: relative;
+			transform: translateY(-100%);
+		}
+		
+		.contentContainer {
+			padding-top: 150px;
+		}
+	
+	/* 제목 부분 */
+	.contentTit {
+		padding: 15px;
+		margin-bottom: 20px;
+		border-bottom: 1px solid #ccc;
+	}
+	
+	.contentTit h3 {
+		color: #333;
+	}
+	
+	/* 테이블 스타일링 */
+	.contentTB .table {
+		border-collapse: collapse;
+	}
+	
+	.contentTB .table th, .contentTB .table td {
+		border: 1px solid #ccc;
+		padding: 10px;
+	}
+	
+	.contentTB .table-striped tbody tr:nth-of-type(odd) {
+		background-color: rgba(0, 0, 0, .05);
+	}
+	
+	/* 테이블 행 높이 조절
+	        .table-tr-height {
+	            height: 680px;  원하는 높이로 설정 
+	        }*/
+</style>
 	
 
 	<div class="container contentContainer">
