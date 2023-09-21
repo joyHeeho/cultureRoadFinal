@@ -1,4 +1,4 @@
-package com.culture.qna.controller;
+package com.culture.user.qna.controller;
 
 import java.util.List;      
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.culture.qna.service.QnaService;
-import com.culture.qna.vo.QnaVO;
+import com.culture.user.qna.service.QnaService;
+import com.culture.user.qna.vo.UserQnaVO;
 import com.spring.common.vo.PageDTO;
 
 import lombok.Setter;
@@ -28,10 +28,10 @@ public class QnaClientController {
 		
 		//글 목록 구현하기(페이징 처리 목록 조회)
 		@GetMapping("/qnaClient")
-		public String qnaList(@ModelAttribute QnaVO qvo,Model model) {
+		public String qnaList(@ModelAttribute UserQnaVO qvo,Model model) {
 			
 			//전체 레코드 조회
-			List<QnaVO> qnaList = qnaService.qnaList(qvo);
+			List<UserQnaVO> qnaList = qnaService.qnaList(qvo);
 			
 			model.addAttribute("qnaList", qnaList);
 			
@@ -46,6 +46,24 @@ public class QnaClientController {
 		}/**********************조회******************************/
 			
 		
+		
+		@PostMapping("/deleteClientQna")
+		public String deleteQna(@RequestParam("qna_id") int qna_id) {
+		    int result = 0;
+		    String url = "";
+			result = qnaService.deleteQna(qna_id);
+		    
+		    if (result == 1) {
+		        url = "/qna/qnaClient";
+		    } else {
+		        url = "error";
+		    }
+		    
+		    return "redirect:" + url;
+		}
+		
+		
+		
 
 	
 		
@@ -58,7 +76,7 @@ public class QnaClientController {
 
 		
 		@PostMapping("/insertQna")
-		public String insertQna(QnaVO qvo, Model model) throws Exception {
+		public String insertQna(UserQnaVO qvo, Model model) throws Exception {
 			log.info("insertQna 메서드 호출");
 			
 			String url="";
@@ -80,20 +98,19 @@ public class QnaClientController {
 		
 		@GetMapping("/qnaUpdateForm")
 		public String qnaUpdateForm(@RequestParam("qna_id") int qna_id, Model model) {
-		    QnaVO qvo = qnaService.getQnaById(qna_id); // qna_id를 사용하여 해당 질문 정보를 조회합니다.
+		    UserQnaVO qvo = qnaService.getQnaById(qna_id); // qna_id를 사용하여 해당 질문 정보를 조회합니다.
 		    model.addAttribute("qvo", qvo);
 		    return "qna/qnaUpdateForm";
 		}
 		
 		
 		@PostMapping("/updateQna")
-		public String updateQna(QnaVO qvo, Model model) throws Exception {
+		public String updateQna(UserQnaVO qvo, Model model) throws Exception {
 			
 			qnaService.updateQna(qvo);
 			
 			return "redirect:/qna/qnaClient";
 		}
-		
 		
 
 

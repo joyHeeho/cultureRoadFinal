@@ -22,7 +22,7 @@
 		<typeAlias type="com.culture.user.payment.vo.UserPaymentVO" alias="userPayment"/>
 		<typeAlias type="com.culture.user.comment.vo.UserCommentVO" alias="userComment"/>
 	-->	
-		<typeAlias type="com.culture.qna.vo.QnaVO" alias="qna"/>
+		<typeAlias type="com.culture.user.qna.vo.UserQnaVO" alias="userQnA"/>
 	
 	<!--
 		API가 쿼리문이,,, 있나,,? 혹시 모르니까,, 남겨놓습니다.... 

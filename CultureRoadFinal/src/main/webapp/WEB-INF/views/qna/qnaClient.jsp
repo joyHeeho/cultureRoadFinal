@@ -1,41 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/common.jspf" %>
+<%@ include file="/WEB-INF/views/common/userLogin.jspf"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+
 <style>
 
-/* 	#qformBtn{ */
-/* 		text-align:left; */
-/* 		border:solid 1px; */
-/* 		width:50px; */
-/* 		height:30px; */
-/* 		font-size:11px; */
-/* 		margin-top:20px; */
-/* 		margin-bottom:30px; */
-		
-/* 	}	  */
-	
+
 	#qformBtn {
-	font-size:11px;
-    background-color: rgb(130, 171, 250);
+	font-size:13px;
+    background-color: #83D28A;
     color: white;
     border: none;
     cursor: pointer;
     margin-top:20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex; /* 텍스트 가운데 정렬을 위해 flex 컨테이너로 설정 */
     justify-content: center; /* 수평 가운데 정렬 */
     align-items: center; /* 수직 가운데 정렬 */
 }
 
-	 body{
-	 	font-size:12px;
-	 	width:800px;
-	 	height:1000px;
-	 	margin:auto;
-	 }
+
 	 
 	 #upBtn,#delBtn{
 	 font-size:10px;
@@ -77,9 +64,33 @@
 		    padding: 20px; 
 		    overflow-wrap: break-word;
 		}
+/* 		#container1{ */
+/* 			font-size:10px; */
+/* 		 	margin-left:auto; */
+/* 		 	margin-top:120px; */
 		
+/* 		} */
+		.pg{
+			color:black;
+			height:35px;
+			text-align:center;
+			font-size:15px;
+			padding:12px;
+		}	
+
+	.goAnswer{
+		height:100px;
+	}
 	
-	
+	table{
+		margin-left:auto;
+		margin-right:auto;
+		margin-top:120px;
+	 	width:800px;
+	 	font-size:11px;
+		border:solid 1px black;
+	}
+
 </style>
 
 <script type="text/javascript">
@@ -131,24 +142,27 @@
 		
 </script>
 
-<title>게시판 리스트</title>
 
 </head>
 <body>
-	<div class="container">
-
+	<jsp:include page="../common/nav.jsp" />
+	
+	
+	<div class="container" id="container1">
 		<form id="f_search" name="f_search" class="form-inline">
 		<%-- 페이징 처리를 위한 파라미터 --%>
 			<input type="hidden" name="pageNum" id="pageNum" value="${pageMaker.cvo.pageNum}">
 			<input type="hidden" name="amount" id="amount" value="${pageMaker.cvo.amount}">
 		</form>
+	<h3>Q&A게시판</h3>
 		<input type="hidden" id="user_id" name="user_id" value="${userLogin.userId}" >
-							
-		<div id="qnaList" class="table-height">
-				<div class="contentBtn text-right">
-						<input type="button" style="float:right;" value="글쓰기" id="qformBtn" class="btn" />
-				</div>
-			<table summary="게시판 리스트" class="table" >
+			<div class="contentBtn text-right" style="margin-right:200px; margin-top:130px;">
+				<input type="button" style="float:right;" value="글쓰기" id="qformBtn" class="btn" />
+			</div>
+		<div id="qnaList" > <!-- 	class="table-height"-->
+				
+ 			<table summary="게시판 리스트"  ><!--class="table" -->
+ 			
 				<thead>
 					<tr>
 						<th data-value="qna_id" class="order text-center" >글번호</th>
@@ -156,10 +170,9 @@
 						<th class="text-center col-md-6" >답변</th>
 						<th >작성자</th>
 						<th data-value="answer_date" class="text-center">작성일</th>
-						
 					</tr>
 				</thead>
-				<tbody id="list" class="table-striped" >
+ 				<tbody id="list" > <!--class="table-striped"  -->
 					<c:choose>
 						<c:when test="${not empty qnaList}" >
 							<c:forEach var="qna" items="${qnaList}" varStatus="status"> 
@@ -168,12 +181,28 @@
  									<td>
 										<c:if test="${qna.answer ne null}"><span style="color:gray">답변완료</span></c:if>
 									</td>
-									<td class="text-center a" data-target="answer-${qna.qna_id}" data-num="${qna.qna_id}"> ${qna.question}</td>
-									<td class="name"> ${qna.user_id}</td>
+									
+									<c:if test="${qna.category eq 1}">
+										<c:choose>
+											<c:when test="${qna.user_id eq userLogin.userId}">	
+											<td class="text-center a" data-target="answer-${qna.qna_id}" data-num="${qna.qna_id}">
+											    <c:out value="${qna.question}" />
+											</td>
+											</c:when>
+											<c:otherwise><td style="height:30px;">🔓︎ 비공개글입니다.</td></c:otherwise>
+										</c:choose>
+									</c:if>
+									<c:if test="${qna.category ne 1}" >
+							            <td class="text-center a" data-target="answer-${qna.qna_id}" data-num="${qna.qna_id}">
+											    <c:out value="${qna.question}" />
+										</td>
+							        </c:if>
+									
+									<td class="name">${qna.user_id}</td>
 									<td> ${qna.question_date}<br/>
 									
 									<c:if test="${qna.user_id eq userLogin.userId}">
-										<form action="/qna/deleteQna" method="post">
+										<form action="/qna/deleteClientQna" method="post">
 							            <input type="hidden" name="qna_id" value="${qna.qna_id}">
 							            <button  type="submit" id="delBtn" class="btn">삭제</button>
 							        </form>
@@ -190,7 +219,7 @@
 									<td colspan=6>
 										<div>
 											<span id="q">${qna.question}</span><br/><br/>
-											<span id="a">${qna.answer}<span style="float: right; margin-right:20px;">${qna.answer_date}</span></span>
+											<span id="a" style="margin-left:100px;">${qna.answer}<span style="float: right; margin-right:20px;">${qna.answer_date}</span></span>
 										</div>
 									</td>
 								</tr>
@@ -205,20 +234,20 @@
 		
 		
 			<%-- ================ 페이징 출력 시작 ================ --%>
-		<div class="text-center page">
+		<div class="text-center page" style="margin-left:350px; margin-bottom:40px; margin-top:70px;" >
 			<ul class="pagination">
 			
 				<!-- 이전 바로가기 10개 존재 여부를 prev 필드의 값으로 확인 -->
 				<c:if test="${pageMaker.prev}">
 					<li class="paginate_button previous">
-						<a href="${pageMaker.startPage - 1 }">Previous</a>
+						<a class="pg" href="${pageMaker.startPage - 1 }"><<</a>
 					</li>
 				</c:if>
 				
 				<!-- 바로가기 번호 출력 -->
 				<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
 					<li class="paginate_button ${pageMaker.cvo.pageNum == num ? 'active':'' }">
-						<a href="${num}">${num}</a>
+						<a class="pg" href="${num}">${num}</a>
 					</li>	
 				</c:forEach>
 				
@@ -226,7 +255,7 @@
 				<!-- 다음 바로가기 10개 존재 여부를 next 필드의 값으로 확인 -->
 				<c:if test="${pageMaker.next}">
 					<li class="paginate_button next">
-						<a href="${pageMaker.endPage + 1 }">Next</a>
+						<a class="pg" href="${pageMaker.endPage + 1 }">>></a>
 					</li>
 				</c:if>
 				
@@ -237,6 +266,6 @@
 		<%-- ================ 리스트 종료 ================ --%>
 
 	</div>
-		
+		<jsp:include page="../mainTemplate/footer.jsp" />
 </body>
 </html>

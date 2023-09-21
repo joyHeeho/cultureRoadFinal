@@ -97,7 +97,7 @@
 		function goPage(){
 			$("#f_search").attr({
 				"method":"get",
-				"action":"/qna/qnaAdmin"
+				"action":"/admin/qna/qnaAdmin"
 			})
 				$("#f_search").submit();
 		}
@@ -153,7 +153,7 @@
 						<th >작성자</th>
 						<th data-value="answer_date" class="text-center">작성일</th>
 						
-						<th colspan="2"><input type="checkbox" id="answerchk" name="answerchk" value="1">답변x</th>
+						<th colspan="2"><input type="checkbox" id="answerchk" name="answerchk" value="1">답변x만</th>
 					</tr>
 				</thead>
 				<tbody id="list" class="table-striped">
@@ -171,12 +171,12 @@
 									<td class="name"> ${qna.user_id}</td>
 									<td> ${qna.question_date}</td>
 										
-									<td><form action="/qna/deleteQna" method="post">
+									<td><form action="/admin/qna/deleteQna" method="post">
 							            <input type="hidden" name="qna_id"  value="${qna.qna_id}">
 							            <button  type="submit">삭제</button>
 							        </form>
 							       
-							        <form action="/qna/answerForm" method="get">
+							        <form action="/admin/qna/answerForm" method="get">
 							            <input type="hidden" name="qna_id" value="${qna.qna_id}">
 							            <button type="submit" class="answerBtn" data-num="${qna.qna_id}">답변</button>
 							        </form>

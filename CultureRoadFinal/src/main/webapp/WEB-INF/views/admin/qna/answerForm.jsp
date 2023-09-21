@@ -47,7 +47,7 @@ $(function(){
 			else{
 				$("#reviewList").attr({
 					"method":"post",
-					"action":"/qna/updateAnswer"
+					"action":"/admin/qna/updateAnswer"
 				});
 				$("#reviewList").submit();
 			}
@@ -58,12 +58,10 @@ $(function(){
 </script>
 
 <div class="answerform">
-
-				<input type="hidden" name="qna_id" value="${qvo.qna_id}" />
-                <input type="hidden" name="managerId" value="${adminLogin.managerId}">
-				<input type="hidden" name="answer_date" value="${qvo.answer_date}" />
-				
         <form name="comment-form" id="reviewList">
+        	<input type="hidden" name="qna_id" value="${qvo.qna_id}" />
+            <input type="hidden" name="managerId" value="${adminLogin.managerId}">
+			<input type="hidden" name="answer_date" value="${qvo.answer_date}" />	
         	<table>
         		<tr>
                 	<td>작성자:</td>

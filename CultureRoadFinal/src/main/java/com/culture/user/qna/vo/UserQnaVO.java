@@ -1,4 +1,4 @@
-package com.culture.qna.vo;
+package com.culture.user.qna.vo;
 
 
 import com.spring.common.vo.CommonVO;
@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class QnaVO extends CommonVO {
+public class UserQnaVO extends CommonVO {
 		
 		private int category; //말머리
 	    private String user_id;

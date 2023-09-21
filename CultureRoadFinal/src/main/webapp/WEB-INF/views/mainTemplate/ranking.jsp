@@ -64,8 +64,7 @@
 						                        <div class="infor_btn text-center" >
 						                        
 						                            <span class="btn movieinfo" data-num="${moviepop.id}" >상세정보</span>
-						                            <input type="button" class="btn movieinfo" data-num="${moviepop.id}" value="상세정보">
-						                            <span class="btn">예매하기</span>
+<%-- 						                            <input type="button" class="btn movieinfo" data-num="${moviepop.id}" value="상세정보"> --%>
 						                        </div>
 						                    </div>
 						                </div>
@@ -96,7 +95,6 @@
 						                        <div class="infor_btn">
 						                        
 						                            <a href="#" >상세정보</a>
-						                            <a href="#">예매하기</a>
 						                        </div>
 						                    </div>
 						                </div>
@@ -128,7 +126,6 @@
 						                        <div class="infor_btn">
 						                        
 						                            <a href="#" >상세정보</a>
-						                            <a href="#">예매하기</a>
 						                        </div>
 						                    </div>
 						                </div>
@@ -157,9 +154,7 @@
 						                            <span class="icon all ir_pm">전체관람가</span> <strong><c:out value='${movie.title}'/></strong>
 						                        </h3>
 						                        <div class="infor_btn">
-						                        
-						                            <a href="#" class="aa">상세정보</a>
-						                            <a href="#">예매하기</a>
+						                            <a href="#" >상세정보</a>
 						                        </div>
 						                    </div>
 						                </div>

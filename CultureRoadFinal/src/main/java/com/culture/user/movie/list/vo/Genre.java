@@ -1,4 +1,4 @@
-package com.culture.movie.list.vo;
+package com.culture.user.movie.list.vo;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
-package com.culture.qna.controller;
+package com.culture.admin.qna.controller;
 
-import java.util.List; 
+import java.util.List;   
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.culture.qna.service.QnaService;
-import com.culture.qna.vo.QnaVO;
+import com.culture.user.qna.service.QnaService;
+import com.culture.user.qna.vo.UserQnaVO;
 import com.spring.common.vo.PageDTO;
 
 import lombok.Setter;
-
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/qna/*")
+@RequestMapping("/admin/qna/*")
 public class QnaAdminController {
 	@Setter(onMethod_ = @Autowired)
 	public QnaService qnaService;
 	
 	//글 목록 구현하기(페이징 처리 목록 조회)
 	@GetMapping("/qnaAdmin")
-	public String qnaList(@ModelAttribute QnaVO qvo,Model model) {
+	public String qnaList(@ModelAttribute UserQnaVO qvo,Model model) {
 		
 		//전체 레코드 조회
-		List<QnaVO> qnaList = qnaService.qnaList(qvo);
+		List<UserQnaVO> qnaList = qnaService.qnaList(qvo);
 		
 		model.addAttribute("qnaList", qnaList);
 		
@@ -40,7 +40,7 @@ public class QnaAdminController {
 		model.addAttribute("pageMaker",new PageDTO(qvo, total));
 		//new PageDTO(CommonVO 또는 CommonVO 하위 클래스의 인스턴스(BoardVO), 총레코드수)
 		
-		return "qna/qnaAdmin";
+		return "admin/qna/qnaAdmin";
 	}/**********************조회******************************/
 		
 	
@@ -52,7 +52,7 @@ public class QnaAdminController {
 		result = qnaService.deleteQna(qna_id);
 	    
 	    if (result == 1) {
-	        url = "/qna/qnaAdmin";
+	        url = "/admin/qna/qnaAdmin";
 	    } else {
 	        url = "error";
 	    }
@@ -66,20 +66,30 @@ public class QnaAdminController {
 	
 	@GetMapping("/answerForm")
 	public String answerForm(@RequestParam("qna_id") int qna_id, Model model) {
-	    QnaVO qvo = qnaService.getQnaById(qna_id); // qna_id를 사용하여 해당 질문 정보를 조회합니다.
+	    UserQnaVO qvo = qnaService.getQnaById(qna_id); // qna_id를 사용하여 해당 질문 정보를 조회
 	    model.addAttribute("qvo", qvo);
-	    return "qna/answer";
+	    return "admin/qna/answerForm";
 	}
 	
 	
 	
 	@PostMapping("/updateAnswer")
-	public String updateAnswer(QnaVO qvo, Model model) throws Exception {
-	    qnaService.updateAnswer(qvo);
-	    
-	    return "redirect:/qna/qnaAdmin";
+	public String updateAnswer(UserQnaVO qvo, Model model) throws Exception {
+		qnaService.updateAnswer(qvo);
+	    return "redirect:/admin/qna/qnaAdmin";
 	}
 	
 	
 	/**************************답변/답변폼*******************************/
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 }

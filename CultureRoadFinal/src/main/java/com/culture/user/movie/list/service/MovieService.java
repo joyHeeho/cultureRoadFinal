@@ -1,4 +1,4 @@
-package com.culture.movie.list.service;
+package com.culture.user.movie.list.service;
 
 import java.util.ArrayList; 
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.culture.movie.list.vo.MovieVO;
+import com.culture.user.movie.list.vo.MovieVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

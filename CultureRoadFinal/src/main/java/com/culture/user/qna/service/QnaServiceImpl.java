@@ -1,16 +1,18 @@
-package com.culture.qna.service;
+package com.culture.user.qna.service;
 
 import java.util.List;  
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.culture.qna.dao.QnaDAO;
-import com.culture.qna.vo.QnaVO;
+import com.culture.user.qna.dao.QnaDAO;
+import com.culture.user.qna.vo.UserQnaVO;
 
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class QnaServiceImpl implements QnaService {
 
 	@Setter(onMethod_ = @Autowired)
@@ -19,13 +21,13 @@ public class QnaServiceImpl implements QnaService {
 	
 
 	@Override
-	public List<QnaVO> qnaList(QnaVO qvo) {
-		List<QnaVO> list = qnaDAO.qnaList(qvo);
+	public List<UserQnaVO> qnaList(UserQnaVO qvo) {
+		List<UserQnaVO> list = qnaDAO.qnaList(qvo);
 		return list;
 	}
 
 	@Override
-	public int insertQna(QnaVO qvo) {
+	public int insertQna(UserQnaVO qvo) {
 		int result = 0;
 		result = qnaDAO.insertQna(qvo);
 		return result;
@@ -33,15 +35,17 @@ public class QnaServiceImpl implements QnaService {
 	
 	
 	@Override
-	public int qnaListCnt(QnaVO qvo) {
+	public int qnaListCnt(UserQnaVO qvo) {
 		return qnaDAO.qnaListCnt(qvo);
 	}
 	/*********************답변 입력,삭제****************************/
 
 
 	  @Override
-	    public void updateAnswer(QnaVO qvo) {
-	        qnaDAO.updateAnswer(qvo);
+	    public void updateAnswer(UserQnaVO qvo) {
+	      log.info("쿼리문 가기직전");  
+		  qnaDAO.updateAnswer(qvo);
+		  log.info("쿼리문 다녀옴");
 	    }
 
 		@Override
@@ -53,16 +57,15 @@ public class QnaServiceImpl implements QnaService {
 		/********************사용자 수정 ***************************/
 		
 		@Override
-		public void updateQna(QnaVO qvo) {
+		public void updateQna(UserQnaVO qvo) {
 			qnaDAO.updateQna(qvo);
 		}
 
 		@Override
-		public QnaVO getQnaById(int qna_id) {
+		public UserQnaVO getQnaById(int qna_id) {
 			return qnaDAO.getQnaById(qna_id);
 		}
 
-		
 
 		
 
