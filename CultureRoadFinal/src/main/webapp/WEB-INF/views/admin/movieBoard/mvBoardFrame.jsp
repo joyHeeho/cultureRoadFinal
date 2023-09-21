@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/WEB-INF/views/common/userLogin.jspf"%> 
 
@@ -138,7 +138,7 @@
               <%@ include file="/WEB-INF/views/admin/movieBoard/mvBoard.jsp"%>
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-<%--          	 <jsp:include page="footer.jsp"/> --%>
+         	 <jsp:include page="footer.jsp"/>
           <!-- partial -->
         </div>
       </div>
@@ -167,4 +167,6 @@
 </html>
 
 
-		
+		 --%>
+		 
+		               <%@ include file="/WEB-INF/views/admin/movieBoard/mvBoard.jsp"%>

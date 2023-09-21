@@ -4,7 +4,7 @@
 
 </head>
 <body class="d-flex flex-column min-vh-100">
- 	<%@ include file="/WEB-INF/views/mainTemplate/nav.jsp"%>
+ 	<%@ include file="/WEB-INF/views/common/nav.jsp"%>
  	<%@ include file="/WEB-INF/views/userLogin/notice/noticeBoard.jsp"%>
  	<%@ include file="/WEB-INF/views/mainTemplate/footer.jsp"%>
 
