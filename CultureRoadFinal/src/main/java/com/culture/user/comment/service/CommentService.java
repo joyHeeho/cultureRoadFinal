@@ -16,4 +16,7 @@ public interface CommentService {
 
 	public int commentDelete(int mv_co_num);
 
+	public int commentLikeCountPlus(UserCommentVO rvo);
+
+
 }
