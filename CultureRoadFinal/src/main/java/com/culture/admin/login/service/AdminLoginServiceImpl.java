@@ -19,4 +19,28 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 		return adminLoginDAO.adminLogin(alvo);
 	}
 
+	@Override
+	public int userCount() {
+		int userCnt = adminLoginDAO.userCount();
+		return userCnt;
+	}
+
+	@Override
+	public int replyCount() {
+		int userCnt = adminLoginDAO.replyCount();
+		return userCnt;
+	}
+
+	@Override
+	public int commentCount() {
+		int userCnt = adminLoginDAO.commentCount();
+		return userCnt;
+	}
+
+	@Override
+	public int mvboardCount() {
+		int userCnt = adminLoginDAO.mvboardCount();
+		return userCnt;
+	}
+
 }

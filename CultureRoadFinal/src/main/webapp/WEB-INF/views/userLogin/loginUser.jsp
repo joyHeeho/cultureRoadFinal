@@ -46,6 +46,11 @@
 			location.href="/userLogin/findIdSelect"
 		});
 		
+		$("#cancelBtn").click(function(){
+			location.href="/userLogin/main"
+		});
+		
+		
 		$("#findPwdBtn").click(function(){
 			location.href="/userLogin/findPwSelect"
 		})
@@ -59,14 +64,20 @@
 		
 	})
 	</script>
-	<style>
-		img{
-			width:800px; height :200px; 
-		}
-	</style>
+<style>
+.logo {
+	display: flex;
+	justify-content: center; /* 수평 가운데 정렬 */
+}
 
+.button {
+	text-align: center;
+}
+</style>
+	
 </head>
 <body>
+<%-- <jsp:include page="../common/nav.jsp"/> --%>
 	<div>
 		<c:if test="${empty userLogin}">
 			<div class="container-scroller">
@@ -77,8 +88,9 @@
 								<div class="auth-form-light text-left p-5">
 									<!--  <h4>Hello! let's get started</h4>
 								                <h6 class="font-weight-light">Sign in to continue.</h6> -->
-									<div class="brand-logo">
-										<img src="/resources/main/image/cultureLogo.jpg">
+									<div class="logo">
+										<img src="/resources/main/image/cultureLogo.jpg"
+											style="width: 50%;">
 									</div>
 									<form id="loginForm" class="pt-6">
 										<div class="form-group">
@@ -92,18 +104,21 @@
 												placeholder="비밀번호">
 										</div>
 										<div class="mt-3">
-											<button type="button"
-												class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+											<button type="button" class="btn btn-primary me-2"
 												id="loginBtn" name="loginBtn">로그인</button>
+											<button type="button" class="btn btn-light" id="cancelBtn"
+												name="cancelBtn">취소</button>
 										</div>
-
-										<!-- <button type="button" id="signUpBtn" name="signUpBtn">회원가입</button> -->
-										<div class="text-center mt-4 font-weight-light"> 계정이 없으신가요? <a href="/userLogin/signUpForm" class="text-primary">회원가입</a>
-                  </div>
-										<button type="button" id="findIdBtn" name="findIdBtn">아이디
-											찾기</button>
-										<button type="button" id="findPwdBtn" name="findPwdBtn">비밀번호
-											찾기</button>
+										<div class="text-center mt-4 font-weight-light">
+											계정이 없으신가요? <a href="/userLogin/signUpForm"
+												class="text-primary">회원가입</a>
+										</div>
+										<div class="button">
+											<button type="button" class="btn btn-outline-info btn-fw"
+												id="findIdBtn" name="findIdBtn">아이디 찾기</button>
+											<button type="button" class="btn btn-outline-info btn-fw"
+												id="findPwdBtn" name="findPwdBtn">비밀번호 찾기</button>
+										</div>
 									</form>
 								</div>
 							</div>
@@ -112,25 +127,7 @@
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${not empty userLogin}">
-			<div class="brand-logo">
-				<img src="/resources/main/image/cultureLogo.jpg">
-			</div>
-			<form class="form-signin" id="userSession">
-				<table>
-					<tr>
-						<td>${userLogin.userName}님환영합니다.</td>
-					</tr>
-				</table>
-				<button type="button" id="logoutBtn" name="logoutBtn">로그아웃</button>
-				<button type="button" id="myPageBtn" name="myPageBtn">마이페이지-확인용</button>
-			</form>
-		</c:if>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+	<jsp:include page="../mainTemplate/footer.jsp" />
 	<!-- content-wrapper ends -->
 	</div>
 	<!-- page-body-wrapper ends -->
@@ -147,6 +144,5 @@
 	<script src="resources/adminMain/assets/js/hoverable-collapse.js"></script>
 	<script src="resources/adminMain/assets/js/misc.js"></script>
 	<!-- endinject -->
-	<div class="container"></div>
 </body>
 </html>

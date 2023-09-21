@@ -31,9 +31,7 @@
 	
 	<select id="myPage" parameterType="userLogin" resultType="userLogin">
 		SELECT   user_no userNo, user_id userId, user_pw userPw, user_name userName, user_email userEmail, 
-		user_phone userPhone, TO_CHAR(TO_DATE(user_birth, '
-		
-		YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth
+		user_phone userPhone, TO_CHAR(TO_DATE(user_birth, 'YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth
 		FROM   USERS
 		WHERE user_id=#{userId} 
 	</select>
@@ -75,13 +73,13 @@
 	
 	<!-- 사용자에게 id, 이름, 가입일 알려주기 -->
 	<select id="findId" parameterType = "userLogin" resultType="userLogin">
-		SELECT user_name userName, user_id userId, to_char(user_date,'YYYY-MM-DD') userDate
+		SELECT user_name userName, user_id userId, TO_CHAR(TO_DATE(user_birth, 'YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth
  		FROM USERS
  		WHERE user_name = #{userName} and user_birth = #{userBirth} and user_email = #{userEmail}
 	</select>
 	
 	 <!-- 사용자가 입력한 정보가 기존의 정보와 같은지 확인 -->
- 	<select id="personalPwInfoEmail" parameterType = "userLogin" resultType="userLogin">
+ 	<select id="personalPwInfoEmail" parameterType = "userLogin" resultType="int">
  		SELECT count(*)
  		FROM USERS
  		WHERE user_id = #{userId} and user_birth = #{userBirth} and user_email = #{userEmail}

@@ -63,15 +63,24 @@ public class AdminLoginController {
 		return url;
 	}
 	
-	@RequestMapping("/logout")
+	@RequestMapping("logout")
 	   public String logout(SessionStatus sessionStatus) {
 	      log.info("관리자 로그아웃 처리");
 	      sessionStatus.setComplete();
-	      return "redirect:/";
+	      return "redirect:/";                             
 	   }
 
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model) {
+		int userCnt = adminLoginService.userCount();
+		int replyCnt = adminLoginService.replyCount();
+		int commentCnt = adminLoginService.commentCount();
+		int mvBoardCount = adminLoginService.mvboardCount();
+		model.addAttribute("userCnt", userCnt);
+		model.addAttribute("replyCnt", replyCnt);
+		model.addAttribute("commentCnt", commentCnt);
+		model.addAttribute("mvBoardCount", mvBoardCount);
 		return "/admin/main/main";
 	}
+	
 }

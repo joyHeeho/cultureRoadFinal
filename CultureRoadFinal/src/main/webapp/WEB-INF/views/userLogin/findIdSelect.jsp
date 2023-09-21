@@ -12,13 +12,32 @@
 			})
 		})	
 	</script>
+	<style>
+		.logo{
+				margin : 50px auto;
+				width: 20%;
+			}
+		
+		form {
+		    position: absolute;
+		    top: 250px;
+		    left: 50%; 
+		    transform: translate(-50%, -50%); 
+		}
+		
+		
+	</style>
 	</head>
-	<body>
+<body>
+	<div class="container">
 		<div class="logo">
-				<img src="/resources/main/image/cultureLogo.jpg">
+			<img src="/resources/main/image/cultureLogo.jpg">
 		</div>
-		<h1>아이디 찾기</h1>
-		<button type="button" id="findIdEmail">이메일로 찾기</button>
-		<button type="button" id="findIdPhone">전화번호로 찾기</button>
-	</body>
+		<form>
+			<h5 class="card-title">아이디 찾기 방법을 선택하세요.</h5>
+			<button type="button" id="findIdEmail" class="btn btn-outline-secondary btn-fw" >이메일로 찾기</button>
+			<button type="button" id="findIdPhone" class="btn btn-outline-secondary btn-fw">전화번호로 찾기</button>
+		</form>
+	</div>
+</body>
 </html>
