@@ -21,6 +21,10 @@ public class UserCommentVO {
 	
 	
 	// 현재사용자가 좋아요 누른건지 아닌지
+<<<<<<< HEAD
 	private int comment_like_cnt;
+=======
+	private String hno;
+>>>>>>> refs/remotes/origin/feature/login
 	
 }

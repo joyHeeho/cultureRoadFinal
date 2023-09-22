@@ -13,11 +13,14 @@ import com.culture.api.movie.vo.ApiMovieVO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ApiMovieServiceImpl implements ApiMovieService {
 	/*@Autowired
 	private RestTemplate restTemplate;
-	private final String API_KEY = "2f086445ca13875b5bf9a9f2fb2bfa36";
+	private final String API_KEY = "a56acee23242b46d2a8b07c40f907286";
 	
 	@Override
 	public List<ApiMovieVO> getNowPlayingMovies() {

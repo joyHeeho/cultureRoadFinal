@@ -101,7 +101,11 @@ public class ApiController {
 	    model.addAttribute("movies", movies);
 	    
 	    // "movie/movieDetail" 뷰로 이동
+<<<<<<< HEAD
 	    return "/userLogin/movie/movieDetail";
+=======
+	    return "movie/movieDetail";
+>>>>>>> refs/remotes/origin/feature/login
 	}
 
 	

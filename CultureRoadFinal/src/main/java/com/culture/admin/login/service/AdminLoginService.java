@@ -1,5 +1,6 @@
 package com.culture.admin.login.service;
 
+
 import com.culture.admin.login.vo.AdminLoginVO;
 
 public interface AdminLoginService {
@@ -8,4 +9,8 @@ public interface AdminLoginService {
 	public int replyCount();
 	public int commentCount();
 	public int mvboardCount();
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/feature/login
 }

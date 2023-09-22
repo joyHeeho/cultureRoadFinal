@@ -8,6 +8,7 @@
 		<if test="search=='user_name'">
 			<![CDATA[ user_name like '%'||#{keyword}||'%']]>
 		</if>
+<<<<<<< HEAD
 		<if test="search=='mv_bo_num'">
 			<![CDATA[ mv_bo_num = #{keyword}]]>
 		</if>
@@ -86,5 +87,68 @@
 	<update id="movieReplyHidden" parameterType="movieReply">
 		update moviereply set mv_re_hidden = #{mv_re_hidden} where mv_re_num = ${mv_re_num}
 	</update>
+=======
+	</sql>
+	
+	<select id="movieReplyList" resultType="movieReply" parameterType="movieReply">
+		select mv_re_num, mv_re_content, TO_CHAR(mv_re_write_date,'MM-DD HH24:MI') AS mv_re_write_date,
+			mv_re_hidden, mv_re_red, r.user_no, mv_bo_num, u.user_name, rereply
+			 from moviereply r join users u on r.user_no = u.user_no
+			 where mv_bo_num = #{mv_bo_num} 
+<!-- 			 <if test="rereply!=0"> -->
+<!-- 				and mv_re_num = #{rereply} -->
+<!-- 			</if> -->
+			order by mv_re_num
+	</select>
+	
+	<insert id="movieReplyInsert" parameterType="movieReply">
+		insert into moviereply(mv_re_num, mv_re_content, user_no, mv_bo_num, rereply)
+    	values(moviereply_seq.nextval, #{mv_re_content}, #{user_no}, #{mv_bo_num}, #{rereply})
+	</insert>
+	
+	<update id="movieReplyDelete" parameterType="movieReply">
+		delete from moviereply 
+		where mv_re_num = #{mv_re_num}
+<!-- 		<if test="rereply!=0"> -->
+<!-- 			and mv_re_num = #{rereply} -->
+<!-- 		</if> -->
+	</update>
+	
+	<update id="movieReplyUpdate" parameterType="movieReply">
+		update moviereply set 
+			mv_re_content = #{mv_re_content},
+			mv_re_write_date = sysdate
+		where mv_re_num = #{mv_re_num}
+<!-- 		<if test="rereply!=0"> -->
+<!-- 			and mv_re_num = #{rereply} -->
+<!-- 		</if> -->
+	</update>
+	
+	<select id="movieReplyAllList" parameterType="movieReply" resultType="movieReply">
+	<![CDATA[
+		select mv_re_num, mv_re_content, TO_CHAR(mv_re_write_date,'MM-DD HH24:MI') AS mv_re_write_date,
+			mv_re_hidden, mv_re_red, r.user_no, mv_bo_num, u.user_name, rereply
+			 from (
+			 SELECT ROWNUM AS rnum, inner_list.*
+			   FROM (
+			   SELECT /*+ index_desc(moviereply moviereply_pk) */ 
+			 
+			 moviereply r join users u on r.user_no = u.user_no
+			 order by mv_re_num desc
+	</select>
+	]]>
+			<trim prefix="WHERE " suffixOverrides="AND OR">
+			  <include refid="movieReplySearch"></include>
+			</trim>
+			<![CDATA[
+			      ORDER BY m.mv_re_num DESC  -- 내부 쿼리에서 역정렬을 먼저 수행
+			    ) inner_list
+			    WHERE ROWNUM <= #{pageNum} * #{amount}
+			  ) boardlist
+			  WHERE boardlist.rnum > (#{pageNum} - 1) * #{amount} 
+			]]>
+	</select>
+
+>>>>>>> refs/remotes/origin/feature/login
 
 </mapper>

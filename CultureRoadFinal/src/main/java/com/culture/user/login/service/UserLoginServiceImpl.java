@@ -20,7 +20,6 @@ public class UserLoginServiceImpl implements UserLoginService {
 
 	
 	public UserLoginVO userLogin(UserLoginVO uvo) {
-
 		UserLoginVO userVO = userDAO.userLogin(uvo);
 		log.info("login결과" + uvo);
 		return userVO;
@@ -110,6 +109,7 @@ public class UserLoginServiceImpl implements UserLoginService {
 
 	@Override
 	public List<UserLoginVO> userList(UserLoginVO uvo) {
+<<<<<<< HEAD
 		List<UserLoginVO> userList = userDAO.userList(uvo);
 		return userList;
 	}
@@ -126,6 +126,26 @@ public class UserLoginServiceImpl implements UserLoginService {
 		return result;
 	}
 
+=======
+		log.info("여기에 올 수 있는지 궁금합니다.");
+		List<UserLoginVO> userList = userDAO.userList(uvo);
+		return userList;
+	}
+
+	@Override
+	public List<UserLoginVO> userInfo(UserLoginVO uvo) {
+		log.info("제발 검색 되게 해주세요,,");
+		List<UserLoginVO> userList = userDAO.userInfo(uvo);
+		return userList;
+	}
+
+	@Override
+	public int userCnt(UserLoginVO uvo) {
+		log.info("제발 페이징,,, 제발,,,");
+		int userCnt = userDAO.userCnt(uvo);
+		return userCnt;
+	}
+>>>>>>> refs/remotes/origin/feature/login
 	
 
 }

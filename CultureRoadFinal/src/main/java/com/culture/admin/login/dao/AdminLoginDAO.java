@@ -11,4 +11,8 @@ public interface AdminLoginDAO {
 	public int replyCount();
 	public int commentCount();
 	public int mvboardCount();
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/feature/login
 }
