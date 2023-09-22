@@ -1,5 +1,7 @@
 package com.culture.user.login.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -104,6 +106,24 @@ public class UserLoginServiceImpl implements UserLoginService {
 	public UserLoginVO myOrderList(UserLoginVO uvo) {
 		 UserLoginVO userLogin = userDAO.myOrderList(uvo);
 		 return userLogin;
+	}
+
+	@Override
+	public List<UserLoginVO> userList(UserLoginVO uvo) {
+		List<UserLoginVO> userList = userDAO.userList(uvo);
+		return userList;
+	}
+
+	@Override
+	public int userCnt(UserLoginVO uvo) {
+		int userCnt = userDAO.userCnt(uvo);
+		return userCnt;
+	}
+
+	@Override
+	public int  userStatusUpdate(UserLoginVO uvo) {
+		int result = userDAO.userStatusUpdate(uvo);
+		return result;
 	}
 
 	

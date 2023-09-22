@@ -110,11 +110,64 @@
 		WHERE user_id = #{userId} and user_birth = #{userBirth} and user_phone = #{userPhone}
 	</select>
 	
-	<select id="myOrderList" parameterType="userLogin" resultType="userLogin">
+<!-- 	<select id="myOrderList" parameterType="userLogin" resultType="userLogin">
 		SELECT u.user_no userNo, u.user_id userId, m.mv_code, m.mv_pay_status, m.mv_order_date, m.mv_headcnt,
 		m.mv_date, m.price  
 		FROM USERS U INNER JOIN MVPAYMENTS M
 		WHERE u.user_no = m.user_no
+	</select> -->
+	
+	<sql id="userSearch">
+	    <if test="search=='userId'">
+	        <![CDATA[ user_id LIKE '%'||#{keyword} || '%' ]]>
+	    </if>
+	    <if test="search=='userName'">
+	        <![CDATA[ user_name LIKE '%'||#{keyword} || '%' ]]>
+	    </if>
+	    <if test="search=='userDelete'">
+	        <![CDATA[
+	            (
+	                (user_delete = 0 AND '회원' LIKE '%'||#{keyword}||'%') OR
+	                (user_delete = 1 AND '탈퇴' LIKE '%'||#{keyword}||'%') OR
+	                (user_delete = 0 AND #{keyword} = '회원') OR
+	                (user_delete = 1 AND #{keyword} = '탈퇴')
+	            )
+	        ]]>
+	    </if>
+	</sql>
+	
+	<select id="userCnt" parameterType="userLogin" resultType="int">
+		SELECT COUNT(*)
+		FROM USERS
+		<trim prefix="where(" suffix=")">
+         <include refid="userSearch"></include>
+      	</trim>
 	</select>
+		   <!-- 게시판 리스트 기본 조회 -->
+      <!-- if문이 만족했을때만 where절 사용. -->
+   <select id="userList" resultType="userLogin" parameterType="userLogin">
+      <![CDATA[
+       SELECT   user_no userNo, REGEXP_REPLACE(user_id, '.', '*', 4)  userId, REGEXP_REPLACE(user_name, '.', '*', 2) userName, CONCAT('****', SUBSTR(user_email, 4, LENGTH(user_email))) userEmail, 
+       REGEXP_REPLACE(user_phone, '(\d{3})(\d{3,4})(\d{4})', '\1****\3') userPhone, TO_CHAR(TO_DATE(user_birth, 'YYMMDD'), 'YY"년" MM"월" DD"일"') AS userBirth, 
+       TO_CHAR(user_date, 'YYYY"년" MM"월" DD"일"') AS userDate, user_delete userDelete,  CASE WHEN user_delete = 0 THEN '회원' WHEN user_delete = 1 THEN '탈퇴' END AS userStatus
+	   FROM  (
+           select /*+ index_desc(users users_pk)*/
+               rownum as rnum, user_no, user_id, user_name, user_email, user_phone, user_birth, user_date, user_delete
+           from users
+        where]]>
+        <trim prefix="(" suffix=") and" prefixOverrides="and">
+         <include refid="userSearch"></include>
+      </trim>
+      <![CDATA[ rownum <= #{pageNum} * #{amount}
+         )userList
+      WHERE rnum>(#{pageNum}-1)*#{amount}
+      ]]>
+   </select>
+   
+   <update id="userStatusUpdate" parameterType="userLogin">
+   		UPDATE USERS
+   		SET user_delete = #{userDelete}
+   		WHERE user_no = #{userNo} 
+   	</update>
 
 </mapper>

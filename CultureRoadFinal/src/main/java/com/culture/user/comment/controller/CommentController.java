@@ -5,19 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 //import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.culture.user.comment.service.CommentService;
 import com.culture.user.comment.vo.UserCommentVO;
+import com.culture.user.login.vo.UserLoginVO;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -51,13 +56,14 @@ public class CommentController {
 	}
 	*/
 	
-	@GetMapping(value = "/all/{mv_id2}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<UserCommentVO> commentList(@PathVariable("mv_id2") Integer mv_id, UserCommentVO cvo) {
+	@GetMapping(value = "/all/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<UserCommentVO> commentList(@PathVariable("id") Integer id, UserCommentVO cvo) {
 	    log.info("List 호출 성공1");
 	    
 	    List<UserCommentVO> entity = null;
-	    cvo.setMv_id(mv_id);
+	    cvo.setId(id);
 	    entity = commentService.commentList(cvo);
+	    
 	    return entity;
 	}
 
@@ -117,15 +123,19 @@ public class CommentController {
 		return (result==1) ? "SUCCESS":"FAILURE";
 	}
 	
-	/*
-	@DeleteMapping(value = "/{b_num}/{r_num}", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> replyDelte(@PathVariable("r_num") Integer r_num, @PathVariable("b_num") Integer b_num) {
-		log.info("replyDelete 호출성공");
-		log.info("r_num = " + r_num + " / b_num = " + b_num);
+	@ResponseBody
+	@GetMapping(value = "likePlus", produces = "text/plain; charset=UTF-8")
+	public String likePlus(@SessionAttribute(name="userLogin", required = false) UserLoginVO user, @ModelAttribute UserCommentVO rvo, Model model) {
+		log.info("likePlus 실행" + rvo.toString() + user.getUserNo());
 		
-		//int result = replyService.replyDelete(r_num);
-		int result = replyService.replyDelete(r_num, b_num);
-		return result == 1 ? new ResponseEntity<String>("SUCCESS", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERRORR);
+		
+		//reviewService.reviewLikePlus(rvo, user); // 1 증가
+		
+		int reviewCount = commentService.commentLikeCountPlus(rvo); // 증가된 후 리뷰 개수 조회해서 반환
+		
+		log.info("값 :"+reviewCount);
+		return String.valueOf(reviewCount);
+		
+		
 	}
-	*/
 }

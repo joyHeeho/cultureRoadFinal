@@ -7,18 +7,16 @@
 
 <style>
 .header-area {
-	background-color:#212741;
+	background-color: #212741;
 }
 
 .header-sticky {
 	background-color: #212741;
 }
 
-.nav li{
-	 color: #fff;
+.nav li {
+	color: #fff;
 }
-
-
 </style>
 </head>
 <body>
@@ -31,41 +29,39 @@
 					<nav class="main-nav">
 						<!-- ***** Logo Start ***** -->
 						<div class="logo">
-							<img src="/resources/main/image/logo.png" alt="">
+							<img src="/resources/main/image/logo.png" a href="/" alt="">
 						</div>
 						<!-- ***** Logo End ***** -->
-						<!-- ***** Menu Start ***** -->
-						
+						<!-- ***** Menu Start ***** -->ㅣ
+
 						<ul class="nav">
-                          <li class="scroll-to-section"><a href="/">Main</a></li>
+							<li class="scroll-to-section"><a href="/">Main</a></li>
 
-                          <li class="has-sub">
-                              <a>Movie</a>
-                              <ul class="sub-menu">
-                                  <li><a href="about-us.jsp">Movie List</a></li>
-                                  <li><a href="our-services.jsp">Movie Board</a></li>
-                                  <li><a href="contact-us.jsp">Reservation</a></li>
-                              </ul>
-                          </li>
-                           <li class="has-sub">
-                              <a>Notice</a>
-                              <ul class="sub-menu">
-                                  <li><a href="#">Notice</a></li>
-                                  <li><a href="/qna/qnaClient">Q&A</a></li>
-                              </ul>
-                          </li>
+							<li class="has-sub"><a>Movie</a>
+								<ul class="sub-menu">
+									<li><a href="/movie/movieList">Movie List</a></li>
+									<li><a href="/movie/mvBoard">Movie Board</a></li>
+									<li><a href="contact-us.jsp">Reservation</a></li>
+									<li><a href="">Movie Theater</a></li>
+								</ul></li>
+							<li class="has-sub"><a>Notice</a>
+								<ul class="sub-menu">
+									<li><a href="/notice/list">Notice</a></li>
+									<li><a href="/qna/qnaClient">Q&A</a></li>
+								</ul>
+							</li>
 
-                          <c:choose>
-                          	<c:when test = "${empty userLogin}">
-                          		<li><a href="/userLogin/signUpForm">회원가입</a></li>
-                          		<li><a href="/userLogin/loginUser">로그인</a></li>
-                          	</c:when>
-                          	<c:when test = "${not empty userLogin}">
-                          		<li><a href="/userLogin/myPage">마이페이지</a></li>
-                          		<li><a href="/userLogin/logout">로그아웃</a></li>
-                          	</c:when>
-                          </c:choose>
-                      </ul>        
+							<c:choose>
+								<c:when test="${empty userLogin}">
+									<li><a href="/userLogin/signUpForm">회원가입</a></li>
+									<li><a href="/userLogin/loginUser">로그인</a></li>
+								</c:when>
+								<c:when test="${not empty userLogin}">
+									<li><a href="/userLogin/myPage">마이페이지</a></li>
+									<li><a href="/userLogin/logout">로그아웃</a></li>
+								</c:when>
+							</c:choose>
+						</ul>
 					</nav>
 				</div>
 			</div>

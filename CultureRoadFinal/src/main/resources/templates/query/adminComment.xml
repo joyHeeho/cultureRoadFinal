@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.culture.admin.comment.dao.AdminCommentDAO">
+
+   <sql id="adminCommentSearch">
+      <if test="search == 'title'">
+            <![CDATA[ title like '%' || #{keyword} || '%' ]]>
+      </if>
+      <if test="search == 'mv_co_content'">
+            <![CDATA[ mv_co_content like '%' || #{keyword} || '%' ]]>
+      </if>
+      <if test="search == 'user_name'">
+            <![CDATA[ user_name like '%' || #{keyword} || '%' ]]>
+      </if>
+   </sql>
+
+   <select id="adminCommentList" resultType="adminComment"
+      parameterType="adminComment">
+        <![CDATA[
+        select commentlist.mv_co_num, commentlist.title, commentlist.mv_co_content, to_char(commentlist.mv_co_write_date, 'yyyy-mm-dd') as mv_co_write_date, commentlist.user_name
+        FROM (
+             SELECT ROWNUM AS rnum, inner_list.*
+             FROM (
+                 select /*+ index_desc(MOVIECOMMENT moviecoment_pk) */
+                 mv_co_num, user_name, title, mv_co_write_date, mv_co_hidden, mv_co_content
+                 from MOVIECOMMENT
+                  ]]>
+      <trim prefix="WHERE" suffixOverrides="AND OR">
+         <include refid="adminCommentSearch" />
+      </trim>
+        <![CDATA[
+            ORDER BY mv_co_num DESC  -- 내부 쿼리에서 역정렬을 먼저 수행
+             ) inner_list
+             WHERE ROWNUM <= #{pageNum} * #{amount}
+           ) commentlist
+           WHERE commentlist.rnum > (#{pageNum} - 1) * #{amount} and mv_co_hidden = 0
+        ]]>
+   </select>
+
+   <select id="adminCommentListCnt" parameterType="adminComment" resultType="int">
+        SELECT count(*) FROM MOVIECOMMENT
+       <trim prefix="where(" suffix=")">
+          <include refid="adminCommentSearch"></include>
+      </trim>
+   </select>
+
+   <select id="adminCommentDetail" parameterType="adminComment"
+      resultType="adminComment">
+        <![CDATA[
+        select mv_co_num, user_name, title, mv_co_content, TO_CHAR(mv_co_write_date, 'YYYY-MM-DD HH24:MI:SS') as mv_co_write_date
+        from MOVIECOMMENT
+        where mv_co_num = #{mv_co_num}
+        ]]>
+   </select>
+
+   <delete id="adminCommentDelete" parameterType="adminComment">
+      <!-- comment - commentDelete -->
+      DELETE FROM MOVIECOMMENT WHERE mv_co_num = #{mv_co_num}
+   </delete>
+
+</mapper>

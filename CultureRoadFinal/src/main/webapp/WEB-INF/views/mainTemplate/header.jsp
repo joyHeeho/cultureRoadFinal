@@ -18,23 +18,23 @@
                       <!-- ***** Logo End ***** -->
                       <!-- ***** Menu Start ***** -->
                       <ul class="nav">
-                          <li class="scroll-to-section"><a href="#top" class="active">Main</a></li>
+                          <li class="scroll-to-section"><a href="#banner" class="active">Main</a></li>
                           <li class="scroll-to-section"><a href="#search">Search</a></li>
                           <li class="scroll-to-section"><a href="#movie">Ranking</a></li>
                           <li class="has-sub">
                               <a href="javascript:void(0)">Movie</a>
                               <ul class="sub-menu">
-                                  <li><a href="about-us.jsp">Movie List</a></li>
-                                  <li><a href="our-services.jsp">Movie Board</a></li>
-                                  <li><a href="contact-us.jsp">Reservation</a></li>
-                                  <li><a href="contact-us.jsp">Movie Theater</a></li>
+                                  <li><a href="/movie/movieList">Movie List</a></li>
+                                  <li><a href="/movie/mvBoard">Movie Board</a></li>
+                                  <li><a href="">Reservation</a></li>
+                                  <li><a href="">Movie Theater</a></li>
                               </ul>
                           </li>
                           <li class="scroll-to-section"><a href="#bestComment">BestComment</a></li>
                            <li class="has-sub">
                               <a href="javascript:void(0)">Notice</a>
                               <ul class="sub-menu">
-                                  <li><a href="#">Notice</a></li>
+                                  <li><a href="/notice/list">Notice</a></li>
                                   <li><a href="/qna/qnaClient">Q&A</a></li>
                               </ul>
                           </li>

@@ -1,11 +1,15 @@
 package com.culture.admin.login.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -13,6 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.culture.admin.login.service.AdminLoginService;
 import com.culture.admin.login.vo.AdminLoginVO;
+import com.culture.common.vo.PageDTO;
+import com.culture.user.board.vo.MovieBoardVO;
+import com.culture.user.login.service.UserLoginService;
+import com.culture.user.login.vo.UserLoginVO;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +33,9 @@ public class AdminLoginController {
 
 	@Setter(onMethod_ = @Autowired)
 	public AdminLoginService adminLoginService;
+	
+	@Setter(onMethod_ = @Autowired) 
+	public UserLoginService userLoginService;
 	
 	@GetMapping("/login/adminLogin")
 	public String login() {
@@ -71,7 +82,44 @@ public class AdminLoginController {
 	   }
 
 	@GetMapping("/main")
-	public String main() {
-		return "/admin/main/main";
+	public String main(Model model) {
+		int userCnt = adminLoginService.userCount();
+		int replyCnt = adminLoginService.replyCount();
+		int commentCnt = adminLoginService.commentCount();
+		int mvBoardCount = adminLoginService.mvboardCount();
+		model.addAttribute("userCnt", userCnt);
+		model.addAttribute("replyCnt", replyCnt);
+		model.addAttribute("commentCnt", commentCnt);
+		model.addAttribute("mvBoardCount", mvBoardCount);
+		return "/admin/main/adminDashboard";
 	}
+
+	@GetMapping("/user/manageUsers")
+	public String userList(@ModelAttribute UserLoginVO uvo, Model model) {
+		log.info("사용자 관리 성공하고싶슴다,,,");
+		List<UserLoginVO> userList = userLoginService.userList(uvo);
+		model.addAttribute("userList", userList);
+		log.info("userList 받아와라 얼른 " + userList.toString());
+		int total = userLoginService.userCnt(uvo);
+		
+		model.addAttribute("paging", new PageDTO(uvo, total));
+		log.info("영화 자유게시판 호출" + total);
+		return "/admin/main/manageUsers";
+		
+	}
+
+	@PostMapping("/user/userStatusUpdate")
+	public String mvBoardHidden(@ModelAttribute UserLoginVO	 uvo, @RequestParam("pageNum") int pageNum) {
+		log.info("유저상태 업데이트 되나요?");
+		int result = userLoginService.userStatusUpdate(uvo);
+		log.info("유저상태 업데이트 결과 내놔ㅏㅏㅏㅏㅏ "+result);
+		return "redirect:/admin/user/manageUsers?pageNum="+ pageNum +"&amount=10";
+	}
+	
+
+	@PostMapping("/user/manageUsers")
+	public String managerUsers() {
+		return "/admin/main/manageUsers";
+	}
+	
 }
